@@ -36,7 +36,7 @@ public class UMLMethod {
 	
 	public UMLMethod(Constructor<?> constructor) {
 		isConstructor = true;
-		name = constructor.getName();
+		name = TypeResolver.getShortTypeFormOf(constructor.getName());
 		returnType = null; // A constructor has no return type
 		modifier = constructor.getModifiers();
 		parameters = new Vector<>();

@@ -44,9 +44,9 @@ public enum Modifiers {
 	 * @return symbol
 	 */
 	public static String valueOf(int modifier){
-		for(Modifiers mod : Modifiers.values()){
-			if(mod.modifier == modifier){
-				return mod.symbol;
+		for(Modifiers element : Modifiers.values()){
+			if(element.modifier == modifier){
+				return element.symbol;
 			}
 		}
 		return "";

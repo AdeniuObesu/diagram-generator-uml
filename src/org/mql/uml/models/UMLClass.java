@@ -4,6 +4,7 @@
 package org.mql.uml.models;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Vector;
@@ -63,21 +64,26 @@ public class UMLClass {
 		this.isInterface = isInterface;
 	}
 
-	public void addMethod(Method method) {
-		methods.add( new UMLMethod(method));
+	public void addField(Field field) {
+		fields.add(new UMLField(field));
+		
 	}
 	public void addConstructor(Constructor<?> constructor) {
 		methods.add(new UMLMethod(constructor));
+	}
+	public void addMethod(Method method) {
+		methods.add( new UMLMethod(method));
 	}
 	
 	@Override
 	public String toString() {
 		String temp = "Class : " + name + "\n";
+		//TODO : Resolve modifiers in case of synchronized fields|methods
 		for(UMLField field : fields) {
-			temp = "\t" + temp + field + "\n";
+			temp = temp + "\t" + field + "\n";
 		}
 		for(UMLMethod method : methods) {
-			temp = "\t" + temp + method + "\n";
+			temp = temp + "\t" + method + "\n";
 		}
 		return temp;
 	}

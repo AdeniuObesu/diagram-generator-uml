@@ -81,8 +81,10 @@ public class UMLMethod {
 	@Override
 	public String toString() {
 		String temp = Modifiers.valueOf(modifier) + " " + name+"(";
-		for(Parameter parameter : parameters) {
-			temp = temp + parameter.getType() + " " + parameter.getName() + ", ";
+		for(int i=0; i<parameters.size(); i++) {
+			temp = temp + parameters.get(i).getName() + ": " + parameters.get(i).getType();
+			if(i!=parameters.size()-1)
+				temp = temp + ", ";
 		}
 		temp = temp + ")";
 		if( !this.isConstructor ) // Then add the return type

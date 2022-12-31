@@ -4,6 +4,7 @@
 package org.mql.uml.enums;
 
 /**
+ * Here are all the possible UML relation types
  * @author MOUKHAFI ANASS
  * @On Saturday, December 31, 2022
  */

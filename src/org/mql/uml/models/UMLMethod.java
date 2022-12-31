@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Vector;
 
 import org.mql.uml.enums.Modifiers;
+import org.mql.uml.utils.TypeResolver;
 
 /**
  * @author MOUKHAFI ANASS
@@ -25,7 +26,7 @@ public class UMLMethod {
 	public UMLMethod(Method method) {
 		isConstructor = false;
 		name = method.getName();
-		returnType = method.getReturnType().toString();
+		returnType = TypeResolver.getShortTypeFormOf(method.getReturnType().toString());
 		modifier = method.getModifiers();
 		parameters = new Vector<>();
 		for(Parameter parameter : method.getParameters()) {
@@ -82,7 +83,8 @@ public class UMLMethod {
 	public String toString() {
 		String temp = Modifiers.valueOf(modifier) + " " + name+"(";
 		for(int i=0; i<parameters.size(); i++) {
-			temp = temp + parameters.get(i).getName() + ": " + parameters.get(i).getType();
+			temp = temp + parameters.get(i).getName() + ": ";
+			temp = temp + TypeResolver.getShortTypeFormOf(parameters.get(i).getType().toString());
 			if(i!=parameters.size()-1)
 				temp = temp + ", ";
 		}

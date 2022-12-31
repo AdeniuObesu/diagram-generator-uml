@@ -8,6 +8,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import org.mql.uml.models.UMLClass;
+import org.mql.uml.utils.TypeResolver;
 
 /**
  * Converts a class to a UMLClass
@@ -19,7 +20,7 @@ public class ClassParser {
 	
 	public ClassParser(Class<?> clazz) {
 		umlClass = new UMLClass();
-		umlClass.setName(clazz.getName());
+		umlClass.setName(TypeResolver.getShortTypeFormOf(clazz.getName()));
 		if(clazz.isInterface()) {
 			umlClass.setInterface(true);
 		}

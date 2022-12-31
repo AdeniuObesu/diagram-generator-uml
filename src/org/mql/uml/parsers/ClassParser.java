@@ -38,7 +38,4 @@ public class ClassParser {
 	public UMLClass getUmlClass() {
 		return umlClass;
 	}
-	public void setUmlClass(UMLClass umlClass) {
-		this.umlClass = umlClass;
-	}
 }

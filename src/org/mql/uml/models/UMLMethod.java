@@ -3,6 +3,11 @@
  */
 package org.mql.uml.models;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.util.List;
+import java.util.Vector;
+
 import org.mql.uml.enums.Modifiers;
 
 /**
@@ -12,10 +17,18 @@ import org.mql.uml.enums.Modifiers;
 public class UMLMethod {
 	private int modifier;
 	private String name;
-	private String type;
+	private String returnType;
+	private List<Parameter> parameters;
 	
-	public UMLMethod() {
+	public UMLMethod(Method method) {
 		// TODO Think of a way to initialize a list of parameters
+		name = method.getName();
+		returnType = method.getReturnType().toString();
+		modifier = method.getModifiers();
+		parameters = new Vector<>();
+		for(Parameter parameter : method.getParameters()) {
+			parameters.add(parameter);
+		}
 	}
 	
 	public int getModifier() {
@@ -30,11 +43,11 @@ public class UMLMethod {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getType() {
-		return type;
+	public String getReturnType() {
+		return returnType;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setReturnType(String type) {
+		this.returnType = type;
 	}
 	
 	/**
@@ -42,8 +55,12 @@ public class UMLMethod {
 	 * */
 	@Override
 	public String toString() {
-		String temp = Modifiers.valueOf(modifier) + name + " : " + type;
-		// TODO : add parameters to the representation
+		String temp = Modifiers.valueOf(modifier) + " " + name+"(";
+		for(Parameter parameter : parameters) {
+			temp = temp + parameter.getType() + " " + parameter.getName() + ", ";
+		}
+		temp = temp + ") : " + returnType;
+		// TODO : We need our return types to be factored
 		return temp;
 	}
 }

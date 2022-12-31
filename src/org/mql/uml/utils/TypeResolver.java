@@ -10,7 +10,7 @@ package org.mql.uml.utils;
  * @On Saturday, December 31, 2022
  */
 public class TypeResolver {
-	public static String getShortTypeFormOf(String type) {
+	public static String getShortFormOfType(String type) {
 		String str = type;
 		type = type.substring(str.lastIndexOf(".")+1, str.length());
 		type = type.replace(";", "");

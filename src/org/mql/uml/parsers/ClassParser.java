@@ -20,7 +20,7 @@ public class ClassParser {
 	
 	public ClassParser(Class<?> clazz) {
 		umlClass = new UMLClass();
-		umlClass.setName(TypeResolver.getShortTypeFormOf(clazz.getName()));
+		umlClass.setName(TypeResolver.getShortFormOfType(clazz.getName()));
 		if(clazz.isInterface()) {
 			umlClass.setInterface(true);
 		}

@@ -20,7 +20,7 @@ public class UMLField {
 	public UMLField(Field field) {
 		modifier = field.getModifiers();
 		name = field.getName();
-		type = TypeResolver.getShortTypeFormOf(field.getType().toString());
+		type = TypeResolver.getShortFormOfType(field.getType().toString());
 	}
 
 	public int getModifier() {

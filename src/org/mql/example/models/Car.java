@@ -3,13 +3,14 @@
  */
 package org.mql.example.models;
 
+import org.mql.example.behaviors.Noisy;
 import org.mql.example.enums.FuelType;
 
 /**
  * @author MOUKHAFI ANASS
  * @On Saturday, December 31, 2022
  */
-public class Car extends Vehicle {
+public class Car extends Vehicle implements Noisy{
 	private FuelType fuelType;
 	private int wheelsNumber;
 	
@@ -37,6 +38,11 @@ public class Car extends Vehicle {
 	@Override
 	public String toString() {
 		return "Car [" + getName() + " uses " + fuelType + "]";
+	}
+
+	@Override
+	public void makeASound() {
+		// Here the car starts making exhaust sound
 	}
 	
 	

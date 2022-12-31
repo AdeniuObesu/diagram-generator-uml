@@ -8,23 +8,21 @@ package org.mql.example.models;
  * @On Saturday, December 31, 2022
  */
 public class Bike extends Vehicle {
-	private String exaustBrand;
+	private String exhaustBrand;
 	public Bike(String name) {
 		super(name);
-		exaustBrand = "SC Project";
+		exhaustBrand = "SC Project";
 	}
 	
-	public String getExaustBrand() {
-		return exaustBrand;
+	public String getExhaustBrand() {
+		return exhaustBrand;
 	}
-	public void setExaustBrand(String exaustBrand) {
-		this.exaustBrand = exaustBrand;
+	public void setExhaustBrand(String exaustBrand) {
+		this.exhaustBrand = exaustBrand;
 	}
 
 	@Override
 	public String toString() {
-		return "Bike [" + getName() + " makes a loud sound with its " + exaustBrand + " exaust]";
-	}
-
-	
+		return "Bike [" + getName() + " makes a loud sound with its " + exhaustBrand + " exaust]";
+	}	
 }

@@ -5,7 +5,7 @@ import org.mql.example.models.Car;
 import org.mql.example.models.Employee;
 import org.mql.example.models.Student;
 import org.mql.example.utils.Date;
-import org.mql.uml.parsers.ClassParser;
+import org.mql.uml.parsers.ModelParser;
 
 public class Main {
 	public Main() {
@@ -20,8 +20,8 @@ public class Main {
 		new Date(1, 1, 2023);
 		
 		try {
-			ClassParser cp = new ClassParser(Class.forName("org.mql.example.models.Car"));
-			System.out.println(cp.getUmlClass());
+			ModelParser cp = new ModelParser(Class.forName("org.mql.example.behaviors.Noisy"));
+			System.out.println(cp.getUMLModel());
 		} catch(Exception e) { }
 	}
 	

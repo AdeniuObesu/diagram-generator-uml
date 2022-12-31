@@ -1,0 +1,46 @@
+/**
+ * 
+ */
+package org.mql.uml.parsers;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+import org.mql.uml.models.UMLClass;
+import org.mql.uml.models.UMLInterface;
+import org.mql.uml.models.UMLModel;
+import org.mql.uml.utils.TypeResolver;
+
+/**
+ * Parses a UMLModel (Class | Interface)
+ * @author MOUKHAFI ANASS
+ * @On Saturday, December 31, 2022
+ */
+public class ModelParser {
+	private UMLModel umlModel;
+	
+	public ModelParser(Class<?> clazz) {
+		if(clazz.isInterface()) {
+			umlModel = new UMLInterface(TypeResolver.getShortFormOfType(clazz.getName()));
+		} else {
+			// Put here everything that is specific to class type
+			umlModel = new UMLClass(TypeResolver.getShortFormOfType(clazz.getName()));
+			UMLClass obj = (UMLClass) umlModel;
+			for(Constructor<?> constructor : clazz.getDeclaredConstructors()) {
+				obj.addConstructor(constructor);
+			}
+		}
+		
+		for(Field field : clazz.getDeclaredFields()) {
+			umlModel.addField(field);
+		}
+		for(Method method : clazz.getDeclaredMethods()) {
+			umlModel.addMethod(method);
+		}
+	}
+
+	public UMLModel getUMLModel() {
+		return umlModel;
+	}
+}

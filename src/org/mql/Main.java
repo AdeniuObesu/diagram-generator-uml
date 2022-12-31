@@ -9,7 +9,7 @@ public class Main {
 	
 	private void exp01() {
 		try {
-			ClassParser cp = new ClassParser(Class.forName("java.lang.Object"));
+			ClassParser cp = new ClassParser(Class.forName("java.util.Vector"));
 			System.out.println(cp.getUmlClass());
 		} catch(Exception e) { }
 	}

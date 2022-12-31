@@ -3,6 +3,7 @@
  */
 package org.mql.uml.parsers;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 import org.mql.uml.models.UMLClass;
@@ -20,6 +21,9 @@ public class ClassParser {
 		umlClass.setName(clazz.getName());
 		if(clazz.isInterface()) {
 			umlClass.setInterface(true);
+		}
+		for(Constructor<?> constructor : clazz.getDeclaredConstructors()) {
+			umlClass.addConstructor(constructor);
 		}
 		for(Method method : clazz.getDeclaredMethods()) {
 			umlClass.addMethod(method);

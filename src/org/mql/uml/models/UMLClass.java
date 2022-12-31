@@ -3,6 +3,7 @@
  */
 package org.mql.uml.models;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Vector;
@@ -16,6 +17,7 @@ public class UMLClass {
 	private String name;
 	private List<UMLField> fields;
 	private List<UMLMethod> methods;
+	
 	private boolean isInterface; 
 	
 	public UMLClass() {
@@ -38,7 +40,18 @@ public class UMLClass {
 		this.fields = fields;
 	}
 	public List<UMLMethod> getMethods() {
-		return methods;
+		List<UMLMethod> meths = new Vector<>();
+		for(UMLMethod method : methods)
+			if( !method.isConstructor() )
+				meths.add(method);
+		return meths;
+	}
+	public List<UMLMethod> getConstructors(){
+		List<UMLMethod> constructors = new Vector<>();
+		for(UMLMethod method : methods)
+			if(method.isConstructor())
+				constructors.add(method);
+		return constructors;
 	}
 	public void setMethods(List<UMLMethod> methods) {
 		this.methods = methods;
@@ -53,6 +66,9 @@ public class UMLClass {
 	public void addMethod(Method method) {
 		methods.add( new UMLMethod(method));
 	}
+	public void addConstructor(Constructor<?> constructor) {
+		methods.add(new UMLMethod(constructor));
+	}
 	
 	@Override
 	public String toString() {
@@ -65,5 +81,4 @@ public class UMLClass {
 		}
 		return temp;
 	}
-
 }

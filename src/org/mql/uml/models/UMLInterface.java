@@ -4,6 +4,7 @@
 package org.mql.uml.models;
 
 /**
+ * Represents future interfaces to parse and extends UMLModel
  * @author MOUKHAFI ANASS
  * @On Sunday, January 01, 2023
  */

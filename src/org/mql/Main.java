@@ -13,6 +13,7 @@ public class Main {
 	}
 	
 	private void exp01() {
+		// Provoke execution to create binaries to associated source files.
 		new Student(123);
 		new Employee(123);
 		new Bike("Bitwin");
@@ -23,10 +24,6 @@ public class Main {
 			ModelParser cp = new ModelParser(Class.forName("org.mql.example.behaviors.Noisy"));
 			System.out.println(cp.getUMLModel());
 		} catch(Exception e) { }
-	}
-	
-	private void test01() {
-		
 	}
 	
 	public static void main(String[] args) {

@@ -26,12 +26,11 @@ public class ModelParser {
 		} else {
 			// Put here everything that is specific to class type
 			umlModel = new UMLClass(TypeResolver.getShortFormOfType(clazz.getName()));
-			UMLClass obj = (UMLClass) umlModel;
+			UMLClass actualUMLClass = (UMLClass) umlModel; // Hey JAVA, I know what I'm doing (Down-casting)
 			for(Constructor<?> constructor : clazz.getDeclaredConstructors()) {
-				obj.addConstructor(constructor);
+				actualUMLClass.addConstructor(constructor);
 			}
 		}
-		
 		for(Field field : clazz.getDeclaredFields()) {
 			umlModel.addField(field);
 		}

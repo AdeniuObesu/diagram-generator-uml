@@ -1,32 +1,24 @@
 package org.mql;
 
-import org.mql.example.models.Bike;
-import org.mql.example.models.Car;
-import org.mql.example.models.Employee;
-import org.mql.example.models.Student;
-import org.mql.example.utils.Date;
-import org.mql.uml.parsers.ModelParser;
+import org.mql.uml.parsers.ProjectParser;
 
+/**
+ * @author MOUKHAFI ANASS
+ * @On Friday, December 30, 2023
+ */
 public class Main {
-	public Main() {
-		exp01();
+	public Main(String projectPath) {
+		exp01(projectPath);
 	}
 	
-	private void exp01() {
-		// Provoke execution to create binaries to associated source files.
-		new Student(123);
-		new Employee(123);
-		new Bike("Bitwin");
-		new Car("Lambo");
-		new Date(1, 1, 2023);
-		
-		try {
-			ModelParser cp = new ModelParser(Class.forName("org.mql.example.behaviors.Noisy"));
-			System.out.println(cp.getUMLModel());
-		} catch(Exception e) { }
+	private void exp01(String arg0) {
+		ProjectParser parser = new ProjectParser(arg0);
 	}
 	
 	public static void main(String[] args) {
-		new Main();
+//		new Main(args[0]);
+		// After we finish, we would like to be able to pass only the path of a project, the JAR application
+		// will abstract the way things are done and generate what it is supposed to generate.
+		new Main("C:/eclipse-workspace/p01-revision/bin");
 	}
 }

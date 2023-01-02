@@ -16,12 +16,11 @@ import org.mql.uml.models.Project;
 public class ProjectParser {
 	private Project project;
 	
-	public ProjectParser(String pathName) {
+	public ProjectParser(String pathName, String projectName) {
 		try {
-			File directory = new File(pathName);
-			Project project = new Project(directory.getName());
+			File directory = new File(pathName + projectName);
+			Project project = new Project(pathName, projectName);
 			this.project = project;
-			System.out.println(project.getName());
 		} catch (Exception e) {
 			System.err.println("Oups ! No file found!");
 		}

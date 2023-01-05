@@ -28,7 +28,7 @@ public class PackageParser {
 		for(File item : packageFolder.listFiles()) {
 			if(FileUtils.isClassFile(item.getAbsolutePath())) {
 				// TODO : load the class
-				ModelParser parser = new ModelParser(CustomLoader.load(item));
+				ModelParser parser = new ModelParser(CustomLoader.loadClass(item));
 				umlPackage.addUMLModel(parser.getUMLModel());
 			}
 		}

@@ -12,17 +12,17 @@ import java.net.URLClassLoader;
  * @On Thursday, January 05, 2023
  */
 public class CustomLoader {
-	public static Class<?> load(File file){
+	public static Class<?> loadClass(File file){
 		URLClassLoader loader;
-		String fileName = file.getName();
-		String className = fileName.replace(".class", "");
+		String fileName = file.getAbsolutePath();
+		String className = "org.mql.example.behaviors.Noisy";
+		System.out.println("file:///" + file.getAbsolutePath().replace(fileName, "").replace("\\", "/"));
 		String uri = file.toURI().toString().replace(fileName, "");
-		System.out.println(uri);
-		System.out.println(className);
 		try {
 			loader = URLClassLoader.newInstance(new URL[] {
 					new URL(uri)
 			});
+			
 			return loader.loadClass(className);
 		} catch (Exception e) {
 			System.out.println("Oups ! : " + e.getMessage());

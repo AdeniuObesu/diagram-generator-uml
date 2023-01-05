@@ -20,7 +20,7 @@ import org.mql.uml.utils.FileUtils;
  * @author MOUKHAFI ANASS
  * @On Sunday, January 01, 2023
  */
-public class ProjectParser {
+public class ProjectParser implements Parser{
 	private final static Logger logger = Logger.getLogger(ProjectParser.class.getName());
 	private Project project;
 	
@@ -44,5 +44,17 @@ public class ProjectParser {
 	
 	public Project getProject() {
 		return project;
+	}
+
+	@Override
+	public Object parse(File file) {
+		if(FileUtils.isAValidProject(file)) {
+			// TODO : Put the business logic to parse the project
+			// TODO : challenge make sure one instance is going 2 be created :) !
+			System.out.println("We can parse it");
+		} else {
+			System.out.println("We cannot parse it");
+		}
+		return null;
 	}
 }

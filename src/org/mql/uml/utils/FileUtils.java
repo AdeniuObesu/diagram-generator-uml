@@ -14,36 +14,46 @@ import java.util.logging.Logger;
 public class FileUtils {
 	private static final Logger logger = Logger.getLogger(FileUtils.class.getName());
 	
-	public static void getAllPackages(String path, Set<String> names) {
-		File folder = new File(path);
-		for(File item : folder.listFiles()) {
-			if(isPackage(item.getAbsolutePath())) {
-				names.add(item.getAbsolutePath());
-				getAllPackages(item.getAbsolutePath(), names);
+	/*
+	 * Retrieves all sub-packages of a folder
+	 * */
+	public static void getAllPackages(File folder, Set<File> packages) {
+		for(File subFolder : folder.listFiles()) {
+			if(isAValidPackage(subFolder)) {
+				packages.add(subFolder);
+				getAllPackages(subFolder, packages);
 			}
-			if(!item.isFile())
-				getAllPackages(item.getAbsolutePath(), names);
+			if(!subFolder.isFile())
+				getAllPackages(subFolder, packages);
 		}
 	}
 	
-	public static boolean isPackage(String path) {
-		File folder = new File(path);
+	/*
+	 * Checks whether a folder is package or not
+	 * */
+	public static boolean isAValidPackage(File folder) {
 		if(folder.isDirectory()) {
-			for(File item : folder.listFiles()) {
-				if(item.getAbsolutePath().endsWith(".class"))
+			for(File file : folder.listFiles()) {
+				if(file.getAbsolutePath().endsWith(".class")) {
+					logger.info( folder.getAbsolutePath() + " is a valid package.");
 					return true;
+				}
 			}
 		}
 		return false;
 	}
 	
-	public static boolean isClassFile(String fileName) {
-		File destFile = new File(fileName);
-		if(destFile.isFile()) {
-			fileName = destFile.getAbsolutePath();
+	/*
+	 * Checks whether a file is class file that we can count as a UMLmodel or not
+	 * */
+	public static boolean isAValidClassFile(File file) {
+		if(file.isFile()) {
+			String fileName = file.getAbsolutePath();
 			if(fileName.endsWith(".class")
-				&& !fileName.contains("$") )
+				&& !fileName.contains("$") ) {
+				logger.info( file.getAbsolutePath() + " is a class file.");
 				return true;
+			}
 		}
 		return false;
 	}

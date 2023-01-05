@@ -12,35 +12,27 @@ import java.util.Vector;
  */
 public class UMLPackage {
 	private String name;
-	private List<UMLPackage> subPackages;
 	private List<UMLModel> umlModels;
 	
 	public UMLPackage(String name) {
 		this.name = name;
-		subPackages = new Vector<>();
-		umlModels = new Vector<>();
+		this.umlModels = new Vector<>();
 	}
 	
 	public String getName() {
 		return name;
 	}
-	
-	public List<UMLPackage> getSubPackages() {
-		return subPackages;
+	public void setName(String name) {
+		this.name = name;
 	}
-	
-	public List<UMLModel> getUmlModels() {
-		return umlModels;
+	public void addUMLModel(UMLModel anotherOne) {
+		umlModels.add(anotherOne);
 	}
-	
 	@Override
 	public String toString() {
 		StringBuffer temp = new StringBuffer("Package : " + name);
-		for(UMLPackage item : subPackages) {
-			temp.append(item);
-		}
-		for(UMLModel item : umlModels) {
-			temp.append(item);
+		for(UMLModel model : umlModels) {
+			temp.append("\n\t" + model);
 		}
 		return temp.toString();
 	}

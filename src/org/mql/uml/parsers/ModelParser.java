@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 import org.mql.uml.models.UMLClass;
 import org.mql.uml.models.UMLInterface;
 import org.mql.uml.models.UMLModel;
-import org.mql.uml.utils.TypeResolver;
+import org.mql.uml.utils.StringResolver;
 
 /**
  * Parses a UMLModel (Class | Interface)
@@ -22,10 +22,10 @@ public class ModelParser {
 	
 	public ModelParser(Class<?> clazz) {
 		if(clazz.isInterface()) {
-			umlModel = new UMLInterface(TypeResolver.getShortFormOfType(clazz.getName()));
+			umlModel = new UMLInterface(StringResolver.getShortFormOfType(clazz.getName()));
 		} else {
 			// Put here everything that is specific to class type
-			umlModel = new UMLClass(TypeResolver.getShortFormOfType(clazz.getName()));
+			umlModel = new UMLClass(StringResolver.getShortFormOfType(clazz.getName()));
 			UMLClass actualUMLClass = (UMLClass) umlModel; // Hey JAVA, I know what I'm doing (Down-casting)
 			for(Constructor<?> constructor : clazz.getDeclaredConstructors()) {
 				actualUMLClass.addConstructor(constructor);

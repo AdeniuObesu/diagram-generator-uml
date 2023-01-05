@@ -6,7 +6,7 @@ package org.mql.uml.models;
 import java.lang.reflect.Field;
 
 import org.mql.uml.enums.Modifiers;
-import org.mql.uml.utils.TypeResolver;
+import org.mql.uml.utils.StringResolver;
 
 /**
  * @author MOUKHAFI ANASS
@@ -20,7 +20,7 @@ public class UMLField {
 	public UMLField(Field field) {
 		modifier = field.getModifiers();
 		name = field.getName();
-		type = TypeResolver.getShortFormOfType(field.getType().toString());
+		type = StringResolver.getShortFormOfType(field.getType().toString());
 	}
 
 	public int getModifier() {

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Vector;
 
 import org.mql.uml.enums.Modifiers;
-import org.mql.uml.utils.TypeResolver;
+import org.mql.uml.utils.StringResolver;
 
 /**
  * @author MOUKHAFI ANASS
@@ -26,7 +26,7 @@ public class UMLMethod {
 	public UMLMethod(Method method) {
 		isConstructor = false;
 		name = method.getName();
-		returnType = TypeResolver.getShortFormOfType(method.getReturnType().toString());
+		returnType = StringResolver.getShortFormOfType(method.getReturnType().toString());
 		modifier = method.getModifiers();
 		parameters = new Vector<>();
 		for(Parameter parameter : method.getParameters()) {
@@ -36,7 +36,7 @@ public class UMLMethod {
 	
 	public UMLMethod(Constructor<?> constructor) {
 		isConstructor = true;
-		name = TypeResolver.getShortFormOfType(constructor.getName());
+		name = StringResolver.getShortFormOfType(constructor.getName());
 		returnType = null; // A constructor has no return type
 		modifier = constructor.getModifiers();
 		parameters = new Vector<>();
@@ -84,13 +84,13 @@ public class UMLMethod {
 		String temp = Modifiers.valueOf(modifier) + " " + name+"(";
 		for(int i=0; i<parameters.size(); i++) {
 			temp = temp + parameters.get(i).getName() + ": ";
-			temp = temp + TypeResolver.getShortFormOfType(parameters.get(i).getType().toString());
+			temp = temp + StringResolver.getShortFormOfType(parameters.get(i).getType().toString());
 			if(i!=parameters.size()-1)
 				temp = temp + ", ";
 		}
 		temp = temp + ")";
 		if( !this.isConstructor ) // Then add the return type
-			temp = temp + " : " + TypeResolver.getShortFormOfType(returnType);
+			temp = temp + " : " + StringResolver.getShortFormOfType(returnType);
 		return temp;
 	}
 }

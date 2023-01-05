@@ -4,8 +4,15 @@
 package org.mql.uml.parsers;
 
 import java.io.File;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.Vector;
+import java.util.logging.Logger;
 
 import org.mql.uml.models.Project;
+import org.mql.uml.models.UMLPackage;
+import org.mql.uml.utils.FileUtils;
 
 /**
  * Parses a project, finds all packages, classes and interfaces.
@@ -14,21 +21,27 @@ import org.mql.uml.models.Project;
  * @On Sunday, January 01, 2023
  */
 public class ProjectParser {
+	private final static Logger logger = Logger.getLogger(ProjectParser.class.getName());
 	private Project project;
 	
-	public ProjectParser(String pathName, String projectName) {
-		try {
-			File directory = new File(pathName + projectName);
-			Project project = new Project(pathName, projectName);
-			this.project = project;
-		} catch (Exception e) {
-			System.err.println("Oups ! No file found!");
+	public ProjectParser(String path) {
+		logger.info("Parsing : " + path);
+		project = Project.getInstance(path);
+		project.setPath(path);
+		project.setName("My old project !");
+		// copy the bin
+		List<UMLPackage> umlPackages = new Vector<>();
+		Set<String> packageNames = new HashSet<>();
+		FileUtils.getAllPackages(path, packageNames);
+		UMLPackage umlPackage;
+		for(String item : packageNames) {
+			PackageParser parser = new PackageParser(item);
+			umlPackages.add(parser.getUmlPackage());
 		}
+		project.setUMLPackages(umlPackages);
+		System.out.println(project);
 	}
 	
-	/**
-	 * @return the project
-	 */
 	public Project getProject() {
 		return project;
 	}

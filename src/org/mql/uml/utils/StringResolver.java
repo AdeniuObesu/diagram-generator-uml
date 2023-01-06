@@ -15,7 +15,7 @@ public class StringResolver {
 	
 	public static final String convertPathToRelative(String absolutePath) {
 		if(absolutePath != null) {
-			return absolutePath.replace(Project.getInstance(null).getPath(), "");
+			return absolutePath.replace(Project.getInstance(null).getPath() + "\\", "").replace("\\", ".");
 		}
 		return "";
 	}

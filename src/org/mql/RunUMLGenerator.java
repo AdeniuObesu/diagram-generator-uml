@@ -3,6 +3,8 @@ package org.mql;
 import java.io.File;
 import java.util.logging.Logger;
 
+import org.mql.uml.models.Project;
+import org.mql.uml.parsers.Parser;
 import org.mql.uml.parsers.ProjectParser;
 
 /**
@@ -14,27 +16,23 @@ public class RunUMLGenerator {
 	private static final Logger logger = Logger.getLogger(RunUMLGenerator.class.getName());
 	
 	public static void main(String[] args) {
-//		if(args.length < 2) {
-//			System.out.println("Invalid arguments, needs one argument !");
-//			System.out.println("-> The Complete path to a folder containing binaries\"bin\" for instance !");
+//		if(args.length < 1) {
+//			System.out.println("Invalid argument, needs one argument !");
+//			System.out.println("-> The Complete path to a folder containing binaries !");
 //			return;
 //		}
 		RunUMLGenerator obj = new RunUMLGenerator();
-//		obj.startProcess(args[0], "bin");
+//		obj.startProcess(args[0]);
 		// For now let's try with a hard coded argument
-//		obj.startProcess("C:\\project\\bin\\", "bin");
-		obj.startProcess("C:\\eclipse-workspace\\diagram-generator-uml\\", "bin");
+		obj.startProcess("C:\\eclipse-workspace\\diagram-generator-uml\\bin");
 	}
 	/*
 	 * Starts the process of UML diagrams generation
 	 * */
-	private void startProcess(String binPath, String useless) {
+	private void startProcess(String projectPath) {
 		// TODO : create the class diagram
-		File binFolder = new File(binPath);
-		if (!binFolder.isDirectory()) {
-			logger.warning("Folder path provided is not valid, please check -> " + binPath);
-			return;
-		}
-		ProjectParser project = new ProjectParser(binFolder.getAbsolutePath());
+		Parser parser = new ProjectParser();
+		Project project = (Project) parser.parse(new File(projectPath));
+		System.out.println(project);
 	}
 }

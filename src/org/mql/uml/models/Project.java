@@ -3,6 +3,7 @@
  */
 package org.mql.uml.models;
 
+import java.io.File;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Logger;
@@ -19,20 +20,28 @@ public class Project {
 	
 	private static Project project;
 	
-	public static Project getInstance(String path) { // Lazy instantiation
+	/*
+	 * One instance only of Project will be created during execution !
+	 * */
+	public static Project getInstance(File folder) { // Lazy instantiation
 		if(project == null)
-			project = new Project(path);
+			project = new Project(folder);
 		return project;
 	}
 	
-	private Project(String path) {
-		name = "root";
-		this.path = path;
+	private Project(File folder) {
+		this.name = folder.getName();
+		this.path = folder.getAbsolutePath();
+		packages = new Vector<>();
 		logger.info("The project instance is created !");
 	}
 	
-	public void setUMLPackages(List<UMLPackage> packages) {
+	public void setPackages(List<UMLPackage> packages) {
 		this.packages = packages;
+	}
+	public void addPackage(UMLPackage anotherPackage) {
+		if(anotherPackage !=null )
+			packages.add(anotherPackage);
 	}
 
 	public String getPath() {
@@ -54,8 +63,9 @@ public class Project {
 	@Override
 	public String toString() {
 		StringBuffer temp = new StringBuffer("Project : " + name);
+		temp.append("\n--Packages : ");
 		for(UMLPackage item : packages)
-			temp.append( "\n\t"+ item);
+			temp.append( "\n----"+ item);
 		return temp.toString();
 	}
 }

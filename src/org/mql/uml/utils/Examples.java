@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Tests each neighbor class (classes in the same package)
+ * Tests neighbor classes (classes in the same package)
  * @author MOUKHAFI ANASS
  * @On Thursday, January 05, 2023
  */

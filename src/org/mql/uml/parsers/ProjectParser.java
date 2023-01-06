@@ -20,40 +20,37 @@ import org.mql.uml.utils.FileUtils;
  * @author MOUKHAFI ANASS
  * @On Sunday, January 01, 2023
  */
-public class ProjectParser implements Parser{
+@SuppressWarnings("unused")
+public class ProjectParser implements Parser {
 	private final static Logger logger = Logger.getLogger(ProjectParser.class.getName());
-	private Project project;
-	
-	public ProjectParser(String path) {
-		logger.info("Parsing : " + path);
-		project = Project.getInstance(path);
-		project.setPath(path);
-		project.setName("My old project !");
-		// copy the bin
-		List<UMLPackage> umlPackages = new Vector<>();
-		Set<String> packageNames = new HashSet<>();
-		FileUtils.getAllPackages(path, packageNames);
-		UMLPackage umlPackage;
-		for(String item : packageNames) {
-			PackageParser parser = new PackageParser(item);
-			umlPackages.add(parser.getUmlPackage());
-		}
-		project.setUMLPackages(umlPackages);
-		System.out.println(project);
-	}
-	
-	public Project getProject() {
-		return project;
-	}
 
 	@Override
-	public Object parse(File file) {
-		if(FileUtils.isAValidProject(file)) {
-			// TODO : Put the business logic to parse the project
-			// TODO : challenge make sure one instance is going 2 be created :) !
-			System.out.println("We can parse it");
+	public Object parse(File projectFolder) {
+		if(FileUtils.isAValidProject(projectFolder)) {
+			logger.info("Parsing the project : " + projectFolder.getAbsolutePath());
+			Project project = Project.getInstance(projectFolder);
+			List<UMLPackage> packages = new Vector<>();
+			// A special use case : Loading default-package if there is one
+			Parser packageParser = new PackageParser();
+			UMLPackage aPackage;
+			if(FileUtils.isAValidPackage(projectFolder)) {
+				aPackage = (UMLPackage) packageParser.parse(projectFolder);
+				// But this package is the default package so :
+				aPackage.setRelativePath("(default-package)");
+				project.addPackage(aPackage);
+			}
+			// Start loading packages
+//			Set<File> packagesFolders = new HashSet<>();
+//			FileUtils.getAllPackages(projectFolder, packagesFolders);
+//			for(String item : packageNames) {
+//				PackageParser parser = new PackageParser(item);
+//				umlPackages.add(parser.getUmlPackage());
+//			}
+//			project.setUMLPackages(umlPackages);
+//			System.out.println(project);
+			return project;
 		} else {
-			System.out.println("We cannot parse it");
+			logger.info(projectFolder.getAbsolutePath() + " is not a valid project !");
 		}
 		return null;
 	}

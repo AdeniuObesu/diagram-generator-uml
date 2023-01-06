@@ -13,18 +13,35 @@ import java.util.logging.Logger;
  */
 public class FileUtils {
 	private static final Logger logger = Logger.getLogger(FileUtils.class.getName());
-	
+
+	/*
+	 * Checks whether a folder is a valid project folder
+	 * */
+	public static boolean isAValidProject(File folder){
+		if(doesFileExists(folder)) {
+			if(isAValidPackage(folder)) {
+				return true; // This is enough
+			} else { // Or it is enough if that folder contain at least one class file
+				for(File file : folder.listFiles())
+					if(isAValidClassFile(file))
+						return true;
+			}
+		}
+		return false;
+	}
 	/*
 	 * Retrieves all sub-packages of a folder
 	 * */
 	public static void getAllPackages(File folder, Set<File> packages) {
-		for(File subFolder : folder.listFiles()) {
-			if(isAValidPackage(subFolder)) {
-				packages.add(subFolder);
-				getAllPackages(subFolder, packages);
+		if(doesFileExists(folder)) {
+			for(File subFolder : folder.listFiles()) {
+				if(isAValidPackage(subFolder)) {
+					packages.add(subFolder);
+					getAllPackages(subFolder, packages);
+				}
+				if(!subFolder.isFile())
+					getAllPackages(subFolder, packages);
 			}
-			if(!subFolder.isFile())
-				getAllPackages(subFolder, packages);
 		}
 	}
 	
@@ -32,11 +49,13 @@ public class FileUtils {
 	 * Checks whether a folder is package or not
 	 * */
 	public static boolean isAValidPackage(File folder) {
-		if(folder.isDirectory()) {
-			for(File file : folder.listFiles()) {
-				if(file.getAbsolutePath().endsWith(".class")) {
-					logger.info( folder.getAbsolutePath() + " is a valid package.");
-					return true;
+		if(doesFileExists(folder)) {
+			if(folder.isDirectory()) {
+				for(File file : folder.listFiles()) {
+					if(file.getAbsolutePath().endsWith(".class")) {
+						logger.info( folder.getAbsolutePath() + " is a valid package.");
+						return true;
+					}
 				}
 			}
 		}
@@ -47,14 +66,27 @@ public class FileUtils {
 	 * Checks whether a file is class file that we can count as a UMLmodel or not
 	 * */
 	public static boolean isAValidClassFile(File file) {
-		if(file.isFile()) {
-			String fileName = file.getAbsolutePath();
-			if(fileName.endsWith(".class")
-				&& !fileName.contains("$") ) {
-				logger.info( file.getAbsolutePath() + " is a class file.");
-				return true;
+		if(doesFileExists(file)) {
+			if(file.isFile()) {
+				String fileName = file.getAbsolutePath();
+				if(fileName.endsWith(".class")
+					&& !fileName.contains("$") ) {
+					logger.info( file.getAbsolutePath() + " is a class file.");
+					return true;
+				}
 			}
 		}
 		return false;
+	}
+
+	/*
+	 * Checks whether a file exists or not !
+	 * */
+	private static boolean doesFileExists(File file) {
+		if(! file.exists()) {
+			logger.info(file.getAbsolutePath() + " does not exist !");
+			return false;
+		}
+		return true;
 	}
 }

@@ -6,6 +6,7 @@ package org.mql.uml.parsers;
 import java.io.File;
 import java.util.logging.Logger;
 
+import org.mql.uml.models.UMLModel;
 import org.mql.uml.models.UMLPackage;
 import org.mql.uml.utils.FileUtils;
 import org.mql.uml.utils.StringResolver;
@@ -22,8 +23,15 @@ public class PackageParser implements Parser {
 			logger.info("Parsing package : " + packageFolder.getAbsolutePath());
 			UMLPackage thePackage = new UMLPackage(packageFolder.getAbsolutePath());
 			thePackage.setRelativePath(
-					StringResolver.convertPathToRelative(thePackage.getAbsolutePath())
+					StringResolver.convertPackagePathToRelative(thePackage.getAbsolutePath())
 				);
+			Parser parser = new ModelParser();
+			for(File file : packageFolder.listFiles()) {
+				if(FileUtils.isAValidClassFile(file)) {
+					UMLModel aModel = (UMLModel) parser.parse(file);
+					thePackage.addModel(aModel);
+				}
+			}
 			return thePackage;
 		}
 		return null;

@@ -19,12 +19,12 @@ public class UMLPackage {
 	 * */
 	private String relativePath;
 	
-	private List<UMLModel> umlModels;
+	private List<UMLModel> models;
 	
 	public UMLPackage(String absolutePath) {
 		this.absolutePath = absolutePath;
-		this.relativePath = StringResolver.convertPathToRelative(absolutePath);
-		this.umlModels = new Vector<>();
+		this.relativePath = StringResolver.convertPackagePathToRelative(absolutePath);
+		this.models = new Vector<>();
 	}
 	public String getAbsolutePath() {
 		return absolutePath;
@@ -33,12 +33,17 @@ public class UMLPackage {
 		if(path!=null)
 			this.relativePath = path;
 	}
+	public void addModel(UMLModel anotherModel) {
+		if(anotherModel != null) {
+			models.add(anotherModel);
+		}
+	}
 	
 	@Override
 	public String toString() {
 		StringBuffer temp = new StringBuffer("Package : " + relativePath);
-		for(UMLModel model : umlModels) {
-			temp.append("\n\t" + model);
+		for(UMLModel model : models) {
+			temp.append("\n------" + model);
 		}
 		return temp.toString();
 	}

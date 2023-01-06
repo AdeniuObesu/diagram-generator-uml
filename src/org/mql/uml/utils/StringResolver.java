@@ -6,16 +6,24 @@ package org.mql.uml.utils;
 import org.mql.uml.models.Project;
 
 /**
- * Responsible of resolving return type of new types (classes, interfaces...),
- * parameters, fields and methods
+ * Responsible of resolving and converting strings
  * @author MOUKHAFI ANASS
  * @On Saturday, December 31, 2022
  */
 public class StringResolver {
 	
-	public static final String convertPathToRelative(String absolutePath) {
+	public static final String convertPackagePathToRelative(String absolutePath) {
 		if(absolutePath != null) {
-			return absolutePath.replace(Project.getInstance(null).getPath() + "\\", "").replace("\\", ".");
+			return absolutePath
+					.replace(Project.getInstance(null).getPath() + "\\", "")
+					.replace("\\", ".");
+		}
+		return "";
+	}
+	
+	public static final String convertClassFilePathToRelative(String absolutePath) {
+		if(absolutePath != null) {
+			return convertPackagePathToRelative(absolutePath).replace(".class", "");
 		}
 		return "";
 	}
@@ -27,12 +35,5 @@ public class StringResolver {
 		type = type.replace("class", "");
 		type = type.replace("interface", "");
 		return type.trim();
-	}
-	
-	public static final String getPackageName(String absolutePath) {
-		return absolutePath.substring(
-				absolutePath.indexOf("\\bin\\") + 5
-				, absolutePath.length())
-				.replace("\\", ".");
 	}
 }

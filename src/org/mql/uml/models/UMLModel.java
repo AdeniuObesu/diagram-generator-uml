@@ -55,10 +55,10 @@ public class UMLModel {
 		String temp = getName() + "\n";
 		//TODO : Resolve modifiers in case of synchronized fields|methods
 		for(UMLField field : fields) {
-			temp = temp + "\t" + field + "\n";
+			temp = temp + "********" + field + "\n";
 		}
 		for(UMLMethod method : methods) {
-			temp = temp + "\t" + method + "\n";
+			temp = temp + "********" + method + "\n";
 		}
 		return temp;
 	}

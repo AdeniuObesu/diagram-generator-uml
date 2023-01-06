@@ -24,6 +24,8 @@ public class UMLPackage {
 	public UMLPackage(String absolutePath) {
 		this.absolutePath = absolutePath;
 		this.relativePath = StringResolver.convertPackagePathToRelative(absolutePath);
+		System.out.println(this.absolutePath + " is the absolute path");
+		System.out.println(this.relativePath + " is the relative path");
 		this.models = new Vector<>();
 	}
 	public String getAbsolutePath() {

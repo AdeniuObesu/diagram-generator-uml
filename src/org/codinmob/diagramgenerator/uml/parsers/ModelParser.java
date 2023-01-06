@@ -11,7 +11,9 @@ import java.util.logging.Logger;
 
 import org.codinmob.diagramgenerator.uml.models.UMLClass;
 import org.codinmob.diagramgenerator.uml.models.UMLEnum;
+import org.codinmob.diagramgenerator.uml.models.UMLField;
 import org.codinmob.diagramgenerator.uml.models.UMLInterface;
+import org.codinmob.diagramgenerator.uml.models.UMLMethod;
 import org.codinmob.diagramgenerator.uml.models.UMLModel;
 import org.codinmob.diagramgenerator.uml.utils.CustomLoader;
 import org.codinmob.diagramgenerator.uml.utils.StringResolver;
@@ -40,17 +42,17 @@ public class ModelParser implements Parser {
 					model = new UMLClass(StringResolver.getShortFormOfType(clazz.getName()));
 					UMLClass actualUMLClass = (UMLClass) model; // Hey JAVA, I know what I'm doing (Down-casting)
 					for(Constructor<?> constructor : clazz.getDeclaredConstructors()) {
-						actualUMLClass.addConstructor(constructor);
+						actualUMLClass.addCharacteristic(new UMLMethod(constructor));
 					}
 				}
 			}
 			// TODO: Test whether a model is an enum and load declared constants
 			for(Field field : clazz.getDeclaredFields()) {
-				model.addField(field);
+				model.addCharacteristic(new UMLField(field));
 			}
 			if(! clazz.isEnum() ) {
 				for(Method method : clazz.getDeclaredMethods()) {
-					model.addMethod(method);
+					model.addCharacteristic(new UMLMethod(method));
 				}
 			}
 			return model;

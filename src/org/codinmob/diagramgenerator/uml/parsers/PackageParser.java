@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import org.codinmob.diagramgenerator.uml.models.UMLModel;
 import org.codinmob.diagramgenerator.uml.models.UMLPackage;
 import org.codinmob.diagramgenerator.uml.utils.FileUtils;
-import org.codinmob.diagramgenerator.uml.utils.StringResolver;
 /**
  * @author MOUKHAFI ANASS
  * @On Sunday, January 01, 2023

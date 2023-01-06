@@ -11,24 +11,24 @@ import org.codinmob.diagramgenerator.uml.models.Project;
  * @On Saturday, December 31, 2022
  */
 public class StringResolver {
+	private static final String projectPath = Project.getInstance(null).getPath();
 	
 	public static final String convertPackagePathToRelative(String absolutePath) {
-		//TODO : check the platform whether it's a UNIX based system or windows
 		if(absolutePath != null) {
-			String packagePath = absolutePath
-					.replace(Project.getInstance(null).getPath() + "\\", "")
-					.replace("\\", ".");
-			System.out.println(packagePath + " is the relative package path !");
-			return packagePath;
+			return retrieveProjectPathFrom(absolutePath);
 		}
 		return "";
 	}
 	
 	public static final String convertClassFilePathToRelative(String absolutePath) {
 		if(absolutePath != null) {
-			return convertPackagePathToRelative(absolutePath).replace(".class", "");
+			return retrieveProjectPathFrom(absolutePath).replace(".class", "").replace("\\", ".");
 		}
 		return "";
+	}
+	
+	private static final String retrieveProjectPathFrom(String str) {
+		return str.replace(projectPath+"\\", "");
 	}
 	
 	public static final String getShortFormOfType(String type) {

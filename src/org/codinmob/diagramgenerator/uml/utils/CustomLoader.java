@@ -16,17 +16,18 @@ public class CustomLoader {
 	private static final Logger logger = Logger.getLogger(CustomLoader.class.getName());
 	
 	public static Class<?> loadClass(File file){
+		Thread.currentThread().getContextClassLoader().getResourceAsStream("context.xml");
 		URLClassLoader loader;
-		String className = "models.Student";
+		String className;
 		className = StringResolver.convertClassFilePathToRelative(file.getAbsolutePath());
-		System.out.println(className + " is the relative path to the class !");
+		System.out.println(className + " is the class name !");
 		String uri = file.toURI().toString();
-		System.out.println(uri + " is the uri");
+		System.out.println(uri + " is the uri !");
 		try {
 			loader = URLClassLoader.newInstance(new URL[] {
-					new URL(uri)
+				new URL(uri)
 			});
-			return loader.loadClass(className);
+			return loader.loadClass("Vehicle");
 		} catch (Exception e) {
 			logger.warning("Failed loading class : "+ file.getName());
 			e.printStackTrace();

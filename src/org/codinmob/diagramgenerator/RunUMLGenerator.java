@@ -3,7 +3,6 @@ package org.codinmob.diagramgenerator;
 import java.io.File;
 import java.util.logging.Logger;
 
-import org.codinmob.diagramgenerator.uml.models.Project;
 import org.codinmob.diagramgenerator.uml.parsers.Parser;
 import org.codinmob.diagramgenerator.uml.parsers.ProjectParser;
 
@@ -30,8 +29,10 @@ public class RunUMLGenerator {
 	 * Starts the process of UML diagrams generation
 	 * */
 	private void startProcess(String projectPath) {
+		logger.info("-> Start Processing");
 		// TODO : create the class diagram
 		Parser parser = new ProjectParser();
 		System.out.println(parser.parse(new File(projectPath)));
+		logger.info("-> End Processing");
 	}
 }

@@ -9,62 +9,36 @@ import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Vector;
 
-import org.codinmob.diagramgenerator.uml.enums.Modifiers;
 import org.codinmob.diagramgenerator.uml.utils.StringResolver;
 
 /**
  * @author MOUKHAFI ANASS
  * @On Friday, December 30, 2022
  */
-public class UMLMethod {
-	private int modifier;
-	private String name;
-	private String returnType;
+public class UMLMethod extends UMLCharacteristic {
 	private List<Parameter> parameters;
 	private boolean isConstructor;
 	
 	public UMLMethod(Method method) {
-		isConstructor = false;
-		name = method.getName();
-		returnType = StringResolver.getShortFormOfType(method.getReturnType().toString());
-		modifier = method.getModifiers();
-		parameters = new Vector<>();
+		this.isConstructor = false;
+		this.visibility = visibilityOf(method.getModifiers());
+		this.name = method.getName();
+		this.type = method.getReturnType().toString();
+		this.parameters = new Vector<>();
 		for(Parameter parameter : method.getParameters()) {
 			parameters.add(parameter);
 		}
 	}
 	
 	public UMLMethod(Constructor<?> constructor) {
-		isConstructor = true;
-		name = StringResolver.getShortFormOfType(constructor.getName());
-		returnType = null; // A constructor has no return type
-		modifier = constructor.getModifiers();
+		this.isConstructor = true;
+		this.visibility = visibilityOf(constructor.getModifiers());
+		this.name = constructor.getName();
+		type = ""; // A constructor has no return type
 		parameters = new Vector<>();
 		for(Parameter parameter : constructor.getParameters()) {
 			parameters.add(parameter);
 		}
-	}
-	
-	public int getModifier() {
-		return modifier;
-	}
-	public void setModifier(int modifier) {
-		this.modifier = modifier;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getReturnType() {
-		return returnType;
-	}
-	public void setReturnType(String returnType) {
-		this.returnType = returnType;
-	}
-	public List<Parameter> getParameters() {
-		return parameters;
 	}
 	
 	public void setParameters(List<Parameter> parameters) {
@@ -81,7 +55,7 @@ public class UMLMethod {
 	 * */
 	@Override
 	public String toString() {
-		String temp = Modifiers.valueOf(modifier) + " " + name+"(";
+		String temp = visibility.getSymbol() + " " + StringResolver.getShortFormOfType(name) +"(";
 		for(int i=0; i<parameters.size(); i++) {
 			temp = temp + parameters.get(i).getName() + ": ";
 			temp = temp + StringResolver.getShortFormOfType(parameters.get(i).getType().toString());
@@ -90,7 +64,7 @@ public class UMLMethod {
 		}
 		temp = temp + ")";
 		if( !this.isConstructor ) // Then add the return type
-			temp = temp + " : " + StringResolver.getShortFormOfType(returnType);
+			temp = temp + " : " + StringResolver.getShortFormOfType(type);
 		return temp;
 	}
 }

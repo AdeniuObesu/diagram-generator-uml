@@ -32,7 +32,8 @@ public class ProjectParser implements Parser {
 			if(FileUtils.isAValidPackage(projectFolder)) {
 				aPackage = (UMLPackage) packageParser.parse(projectFolder);
 				// But this package is the default package so :
-				aPackage.setRelativePath("(default-package)");
+				// TODO : make a way out
+//				aPackage.setRelativePath("(default-package)");
 				project.addPackage(aPackage);
 			}
 			// Start loading packages

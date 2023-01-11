@@ -19,13 +19,20 @@ public class Examples {
 	File file;
 	
 	public Examples() {
-		testAllPackagesNames();
+		test01();
 	}
 	public static void main(String[] args) {
 		new Examples();
 	}
 	
-	
+	private void test01() {
+		testRetrievePackagePathFromProjectPath();
+	}
+
+	/*---------------PathResolver class-----------------*/
+	private void testRetrievePackagePathFromProjectPath() {
+		System.out.println(PathResolver.retrievePackageRelativePath(folderName + "org\\codinmob\\diagramgenerator"));
+	}
 	/*---------------FileUtils class-----------------*/
 	private void testAllPackagesNames() {
 		Set<File> packages = new HashSet<>();

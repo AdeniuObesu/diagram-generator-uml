@@ -9,7 +9,7 @@ import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Vector;
 
-import org.codinmob.diagramgenerator.uml.utils.StringResolver;
+import org.codinmob.diagramgenerator.uml.utils.PathResolver;
 
 /**
  * @author MOUKHAFI ANASS
@@ -55,16 +55,16 @@ public class UMLMethod extends UMLCharacteristic {
 	 * */
 	@Override
 	public String toString() {
-		String temp = visibility.getSymbol() + " " + StringResolver.getShortFormOfType(name) +"(";
+		String temp = visibility.getSymbol() + " " + PathResolver.getShortFormOfType(name) +"(";
 		for(int i=0; i<parameters.size(); i++) {
 			temp = temp + parameters.get(i).getName() + ": ";
-			temp = temp + StringResolver.getShortFormOfType(parameters.get(i).getType().toString());
+			temp = temp + PathResolver.getShortFormOfType(parameters.get(i).getType().toString());
 			if(i!=parameters.size()-1)
 				temp = temp + ", ";
 		}
 		temp = temp + ")";
 		if( !this.isConstructor ) // Then add the return type
-			temp = temp + " : " + StringResolver.getShortFormOfType(type);
+			temp = temp + " : " + PathResolver.getShortFormOfType(type);
 		return temp;
 	}
 }

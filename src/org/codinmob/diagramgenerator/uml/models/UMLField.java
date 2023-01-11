@@ -4,7 +4,8 @@
 package org.codinmob.diagramgenerator.uml.models;
 
 import java.lang.reflect.Field;
-import org.codinmob.diagramgenerator.uml.utils.StringResolver;
+
+import org.codinmob.diagramgenerator.uml.utils.PathResolver;
 
 /**
  * @author MOUKHAFI ANASS
@@ -23,6 +24,6 @@ public class UMLField extends UMLCharacteristic {
 	 * */
 	@Override
 	public String toString() {
-		return visibility.getSymbol() + " " + name + " : " + StringResolver.getShortFormOfType(type);
+		return visibility.getSymbol() + " " + name + " : " + PathResolver.getShortFormOfType(type);
 	}
 }

@@ -14,23 +14,19 @@ import java.util.logging.Logger;
  */
 public class CustomLoader {
 	private static final Logger logger = Logger.getLogger(CustomLoader.class.getName());
+	private static URLClassLoader loader;
 	
 	public static Class<?> loadClass(File file){
-		Thread.currentThread().getContextClassLoader().getResourceAsStream("context.xml");
-		URLClassLoader loader;
-		String className;
-		className = StringResolver.convertClassFilePathToRelative(file.getAbsolutePath());
-		System.out.println(className + " is the class name !");
-		String uri = file.toURI().toString();
-		System.out.println(uri + " is the uri !");
 		try {
-			loader = URLClassLoader.newInstance(new URL[] {
-				new URL(uri)
-			});
-			return loader.loadClass("Vehicle");
+			if(loader == null) {
+				loader = URLClassLoader.newInstance(new URL[] {
+						new URL(file.toURI().toString())
+				});
+			}
+			return loader.loadClass(file.getName());
 		} catch (Exception e) {
-			logger.warning("Failed loading class : "+ file.getName());
 			e.printStackTrace();
+			logger.info("Failed to load " + file.getName());
 		}
 		return null;
 	}

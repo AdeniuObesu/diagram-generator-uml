@@ -29,6 +29,16 @@ public class Project {
 		return project;
 	}
 	
+	public static String getAbsolutePath() {
+		if(project != null)
+			return project.getPath();
+		return "";
+	}
+	
+	public String getPath() {
+		return path;
+	}
+	
 	private Project(File folder) {
 		this.name = folder.getName();
 		this.path = folder.getAbsolutePath();
@@ -42,22 +52,6 @@ public class Project {
 	public void addPackage(UMLPackage anotherPackage) {
 		if(anotherPackage !=null )
 			this.packages.add(anotherPackage);
-	}
-
-	public String getPath() {
-		return path;
-	}
-	
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 	
 	@Override

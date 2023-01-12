@@ -8,6 +8,8 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.logging.Logger;
 
+import org.codinmob.diagramgenerator.uml.models.Project;
+
 /**
  * @author MOUKHAFI ANASS
  * @On Thursday, January 05, 2023
@@ -20,10 +22,10 @@ public class CustomLoader {
 		try {
 			if(loader == null) {
 				loader = URLClassLoader.newInstance(new URL[] {
-						new URL(file.toURI().toString())
+						new URL("file:/" + Project.getAbsolutePath())
 				});
 			}
-			return loader.loadClass(file.getName());
+			return loader.loadClass(file.getName().replace(".class", ""));
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.info("Failed to load " + file.getName());

@@ -16,10 +16,9 @@ import org.codinmob.diagramgenerator.uml.models.UMLInterface;
 import org.codinmob.diagramgenerator.uml.models.UMLMethod;
 import org.codinmob.diagramgenerator.uml.models.UMLModel;
 import org.codinmob.diagramgenerator.uml.utils.CustomLoader;
-import org.codinmob.diagramgenerator.uml.utils.PathResolver;
 
 /**
- * Parses a UMLModel (Class | Interface)
+ * Parses a UMLModel (Class | Interface | Enum)
  * @author MOUKHAFI ANASS
  * @On Saturday, December 31, 2022
  */
@@ -33,13 +32,12 @@ public class ModelParser implements Parser {
 			logger.info("Parsing file : " + file.getName());
 			UMLModel model;
 			if(clazz.isInterface()) {
-				model = new UMLInterface(PathResolver.getShortFormOfType(clazz.getName()));
+				model = new UMLInterface(file);
 			} else {
-				// Put here everything that is specific to class type
 				if(clazz.isEnum()) {
-					model = new UMLEnum(PathResolver.getShortFormOfType(clazz.getName()));
+					model = new UMLEnum(file);
 				} else {
-					model = new UMLClass(PathResolver.getShortFormOfType(clazz.getName()));
+					model = new UMLClass(file);
 					UMLClass actualUMLClass = (UMLClass) model; // Hey JAVA, I know what I'm doing (Down-casting)
 					for(Constructor<?> constructor : clazz.getDeclaredConstructors()) {
 						actualUMLClass.addCharacteristic(new UMLMethod(constructor));

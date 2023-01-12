@@ -16,7 +16,7 @@ public class UMLField extends UMLCharacteristic {
 	public UMLField(Field field) {
 		this.visibility = visibilityOf(field.getModifiers());
 		this.name = field.getName();
-		this.type = field.getType().toString();
+		this.type = field.getType();
 	}
 	
 	/**
@@ -24,6 +24,6 @@ public class UMLField extends UMLCharacteristic {
 	 * */
 	@Override
 	public String toString() {
-		return visibility.getSymbol() + " " + name + " : " + PathResolver.getShortFormOfType(type);
+		return visibility.getSymbol() + " " + name + " : " + PathResolver.getShortFormOfType(type.toString());
 	}
 }

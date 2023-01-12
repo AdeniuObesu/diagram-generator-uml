@@ -3,6 +3,8 @@
  */
 package org.codinmob.diagramgenerator.uml.models;
 
+import java.io.File;
+
 /**
  * Represents future interfaces to parse and extends UMLModel
  * @author MOUKHAFI ANASS
@@ -10,8 +12,8 @@ package org.codinmob.diagramgenerator.uml.models;
  */
 public class UMLInterface extends UMLModel {
 	
-	public UMLInterface(String name) {
-		super(name);
+	public UMLInterface(File file) {
+		super(file);
 	}
 	
 	@Override

@@ -23,7 +23,7 @@ public class RunUMLGenerator {
 		RunUMLGenerator obj = new RunUMLGenerator();
 //		obj.startProcess(args[0]);
 		// For now let's try with a hard coded argument
-		obj.startProcess("C:\\my-project");
+		obj.startProcess("C:\\eclipse-workspace\\diagram-generator-uml\\bin");
 	}
 	/*
 	 * Starts the process of UML diagrams generation

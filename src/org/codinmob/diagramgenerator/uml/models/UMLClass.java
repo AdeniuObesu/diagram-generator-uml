@@ -3,6 +3,8 @@
  */
 package org.codinmob.diagramgenerator.uml.models;
 
+import java.io.File;
+
 /**
  * UMLClass represents future classes, it is a UMLModel
  * @author MOUKHAFI ANASS
@@ -10,8 +12,8 @@ package org.codinmob.diagramgenerator.uml.models;
  */
 public class UMLClass extends UMLModel {
 	
-	public UMLClass(String name) {
-		super(name);
+	public UMLClass(File file) {
+		super(file);
 	}
 	
 	@Override

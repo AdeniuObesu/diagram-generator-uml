@@ -14,7 +14,19 @@ import org.codinmob.diagramgenerator.uml.enums.Visibility;
 public abstract class UMLCharacteristic {
 	protected Visibility visibility;
 	protected String name;
-	protected String type;
+	protected Class<?> type;
+	
+	public Visibility getVisibility() {
+		return visibility;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public Class<?> getType(){
+		return type;
+	}
 	
 	protected Visibility visibilityOf(int modifier) {
 		String str = Modifier.toString(modifier);

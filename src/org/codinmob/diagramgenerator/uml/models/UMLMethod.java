@@ -23,18 +23,22 @@ public class UMLMethod extends UMLCharacteristic {
 		this.isConstructor = false;
 		this.visibility = visibilityOf(method.getModifiers());
 		this.name = method.getName();
-		this.type = method.getReturnType().toString();
+		this.type = method.getReturnType();
 		this.parameters = new Vector<>();
 		for(Parameter parameter : method.getParameters()) {
 			parameters.add(parameter);
 		}
 	}
 	
+	public List<Parameter> getParameters(){
+		return parameters;
+	}
+	
 	public UMLMethod(Constructor<?> constructor) {
 		this.isConstructor = true;
 		this.visibility = visibilityOf(constructor.getModifiers());
 		this.name = constructor.getName();
-		type = ""; // A constructor has no return type
+		type = null; // A constructor has no return type
 		parameters = new Vector<>();
 		for(Parameter parameter : constructor.getParameters()) {
 			parameters.add(parameter);
@@ -64,7 +68,7 @@ public class UMLMethod extends UMLCharacteristic {
 		}
 		temp = temp + ")";
 		if( !this.isConstructor ) // Then add the return type
-			temp = temp + " : " + PathResolver.getShortFormOfType(type);
+			temp = temp + " : " + PathResolver.getShortFormOfType(type.toString());
 		return temp;
 	}
 }

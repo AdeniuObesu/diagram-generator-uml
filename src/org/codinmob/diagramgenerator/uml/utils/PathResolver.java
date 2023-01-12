@@ -13,11 +13,11 @@ import org.codinmob.diagramgenerator.uml.models.Project;
  * @On Saturday, December 31, 2022
  */
 public class PathResolver {
-	private static final String projectPath = Project.getAbsolutePath();
 	
 	public static final String retrievePackageRelativePath(String absolutePath) {
-		if(absolutePath != null && ! "".equals(projectPath)) {
+		if(absolutePath != null && ! "".equals(Project.getAbsolutePath())) {
 			return retrieveProjectPathFrom(absolutePath)
+					.replace(Project.getAbsolutePath(), "")
 					.replace(File.separator, ".");
 		}
 		return "";
@@ -32,7 +32,7 @@ public class PathResolver {
 	}
 	
 	private static final String retrieveProjectPathFrom(String str) {
-		return str.replace(projectPath+"\\", "");
+		return str.replace(Project.getAbsolutePath()+File.separator, "");
 	}
 	// TODO : this is not PathResolver's responsibility
 	public static final String getShortFormOfType(String type) {

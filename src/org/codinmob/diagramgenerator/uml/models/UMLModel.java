@@ -23,6 +23,10 @@ public abstract class UMLModel {
 		this.characteristics = new Vector<>();
 	}
 	
+	public List<UMLCharacteristic> getCharacteristics(){
+		return characteristics;
+	}
+	
 	/**
 	 * Returns the UMLModel's relative path to the project's path
 	 * @return calculated relativePath

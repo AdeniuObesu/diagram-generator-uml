@@ -3,8 +3,9 @@
  */
 package org.codinmob.diagramgenerator.uml.ui.swing;
 
-import java.awt.Color;
+import java.awt.Dimension;
 
+import javax.swing.Box;
 import javax.swing.JLabel;
 
 import org.codinmob.diagramgenerator.uml.models.UMLField;
@@ -20,10 +21,15 @@ public class JUMLField extends JUMLCharacteristic {
 	public JUMLField(UMLField field) {
 		super();
 		
-		visibilityLabel = new JLabel( field.getVisibility().getSymbol() + " ");
+		visibilityLabel = new JLabel( field.getVisibility().getSymbol());
 		add(visibilityLabel);
 		
-		nameLabel = new JLabel(field.getName() + " : ");
+		add(Box.createRigidArea(new Dimension(5, 0)));
+		nameLabel = new JLabel(field.getName() + ":");
 		add(nameLabel);
+		
+		add(Box.createRigidArea(new Dimension(5, 0)));
+		typeLabel = new JLabel(PathResolver.getShortFormOfType(field.getType().toString()));
+		add(typeLabel);
 	}
 }

@@ -30,9 +30,12 @@ public class JUMLMethod extends JUMLCharacteristic {
 				);
 		}
 		methodName.append(")");
-		if(!method.isConstructor())
-			methodName.append(" : " + method.getType().toString());
 		nameLabel = new JLabel(methodName.toString());
 		add(nameLabel);
+		
+		if(!method.isConstructor()) {
+			typeLabel = new JLabel(": " + method.getType().toString());
+			add(typeLabel);
+		}
 	}
 }

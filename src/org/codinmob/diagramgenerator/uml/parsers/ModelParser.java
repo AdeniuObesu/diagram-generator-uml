@@ -15,7 +15,7 @@ import org.codinmob.diagramgenerator.uml.models.UMLField;
 import org.codinmob.diagramgenerator.uml.models.UMLInterface;
 import org.codinmob.diagramgenerator.uml.models.UMLMethod;
 import org.codinmob.diagramgenerator.uml.models.UMLModel;
-import org.codinmob.diagramgenerator.uml.utils.CustomLoader;
+import org.codinmob.diagramgenerator.uml.utils.CustomClassLoader;
 
 /**
  * Parses a UMLModel (Class | Interface | Enum)
@@ -27,7 +27,7 @@ public class ModelParser implements Parser {
 
 	@Override
 	public Object parse(File file) {
-		Class<?> clazz = CustomLoader.loadClass(file);
+		Class<?> clazz = CustomClassLoader.loadClass(file);
 		if(clazz != null) {
 			logger.info("Parsing file : " + file.getName());
 			UMLModel model;

@@ -22,9 +22,12 @@ public class FileUtils {
 			if(isAValidPackage(folder)) {
 				return true; // This is enough
 			} else { // Or it is enough if that folder contain at least one class file
-				for(File file : folder.listFiles())
-					if(isAValidPackage(file))
+				for(File file : folder.listFiles()) {
+					if(isAValidProject(file)) {
+						logger.info(folder.getAbsolutePath() + " is a valid java project folder!");
 						return true;
+					}
+				}
 			}
 		}
 		return false;
@@ -52,7 +55,7 @@ public class FileUtils {
 		if(doesFileExists(folder)) {
 			if(folder.isDirectory()) {
 				for(File file : folder.listFiles()) {
-					if(file.getAbsolutePath().endsWith(".class")) {
+					if(!file.isDirectory() && file.getAbsolutePath().endsWith(".class")) {
 						logger.info( folder.getAbsolutePath() + " is a valid package.");
 						return true;
 					}

@@ -26,7 +26,7 @@ public class PathResolver {
 	public static final String retrieveClassFileRelativePath(String absolutePath) {
 		if(absolutePath != null) {
 			return retrieveProjectPathFrom(absolutePath)
-					.replace(".class", "");
+					.replace(".class", "").replace(File.separatorChar, '.');
 		}
 		return "";
 	}

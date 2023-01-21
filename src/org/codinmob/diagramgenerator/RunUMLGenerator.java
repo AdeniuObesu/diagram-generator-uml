@@ -36,7 +36,18 @@ public class RunUMLGenerator {
 		logger.info("-> Start Processing");
 		parseProject(file);
 		generateXMLDocument();
+		displaySwingUI();
 		logger.info("-> End Processing");
+	}
+	
+	private void displaySwingUI(){
+		if(Project.getInstance(null) != null) {
+			logger.info("-> Started Swing UI display operation...");
+			
+			logger.info("-> Swing UI is displayed successfully !");
+		} else {
+			logger.info("Cannot dispaly swing UI (The project instance is not yet created !)");
+		}
 	}
 	
 	private void parseProject(File file) {

@@ -35,7 +35,8 @@ public class UMLMethod extends UMLCharacteristic {
 	public UMLMethod(Constructor<?> constructor) {
 		this._constructor = true;
 		this.visibility = visibilityOf(constructor.getModifiers());
-		this.name = constructor.getName();
+		String temp = constructor.getName();
+		this.name = (temp.contains(".") ? temp.substring(temp.lastIndexOf(".")+1) : temp);
 		this.type = null; // A constructor has no return type
 		parameters = new Vector<>();
 		for(Parameter parameter : constructor.getParameters()) {
@@ -56,9 +57,8 @@ public class UMLMethod extends UMLCharacteristic {
 	public String toString() {
 		String temp = visibility.getSymbol() + " " + name +"(";
 		for(int i=0; i<parameters.size(); i++) {
-			temp = temp + parameters.get(i).getName() + ": ";
 			temp = temp + parameters.get(i).getType().getSimpleName();
-			if(i!=parameters.size()-1)
+			if( i != parameters.size() - 1)
 				temp = temp + ", ";
 		}
 		temp = temp + ")";

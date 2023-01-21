@@ -35,6 +35,10 @@ public class UMLPackage {
 		}
 	}
 	
+	public List<UMLModel> getModels(){
+		return models;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuffer temp = new StringBuffer("Package : " + getName());

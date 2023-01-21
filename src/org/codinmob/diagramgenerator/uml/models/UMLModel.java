@@ -28,19 +28,19 @@ public abstract class UMLModel {
 	}
 	
 	/**
-	 * Returns the UMLModel's relative path to the project's path
-	 * @return calculated relativePath
+	 * Returns the UMLModel's binary name
+	 * @return calculated name
 	 */
-	public String getRelativePath() {
+	public String getName() {
 		return PathResolver.retrieveClassFileRelativePath(this.absolutePath);
 	}
 	
 	/**
 	 * Returns the UMLModel's name
-	 * @return calculated name
+	 * @return calculated simple name
 	 */
-	public String getName() {
-		String str = getRelativePath();
+	public String getSimpleName() {
+		String str = getName();
 		return str.substring(str.lastIndexOf(".")+1);
 	}
 	

@@ -8,7 +8,6 @@ import java.lang.reflect.Parameter;
 import javax.swing.JLabel;
 
 import org.codinmob.diagramgenerator.uml.models.UMLMethod;
-import org.codinmob.diagramgenerator.uml.utils.PathResolver;
 
 /**
  * @author MOUKHAFI ANASS
@@ -18,6 +17,7 @@ public class JUMLMethod extends JUMLCharacteristic {
 	private static final long serialVersionUID = 1l;
 	
 	public JUMLMethod(UMLMethod method) {
+		super(method);
 		visibilityLabel = new JLabel(method.getVisibility().getSymbol());
 		add(visibilityLabel);
 		
@@ -26,16 +26,18 @@ public class JUMLMethod extends JUMLCharacteristic {
 		for(Parameter param : method.getParameters()) {
 			methodName.append(
 					param.getName() + " : "
-					+ PathResolver.getShortFormOfType(param.getType().toString())
+					+ param.getType().getSimpleName()
 				);
 		}
 		methodName.append(")");
-		nameLabel = new JLabel(methodName.toString());
-		add(nameLabel);
+		signatureLabel.setText(methodName.toString());
 		
-		if(!method.isConstructor()) {
-			typeLabel = new JLabel(": " + method.getType().toString());
-			add(typeLabel);
+		if( ! method.isConstructor() ) {
+			signatureLabel.setText(
+					signatureLabel.getText()
+					+ " : " + method.getType().getSimpleName()
+				);
 		}
+		add(signatureLabel);
 	}
 }

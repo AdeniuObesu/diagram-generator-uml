@@ -9,18 +9,16 @@ import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Vector;
 
-import org.codinmob.diagramgenerator.uml.utils.PathResolver;
-
 /**
  * @author MOUKHAFI ANASS
  * @On Friday, December 30, 2022
  */
 public class UMLMethod extends UMLCharacteristic {
 	private List<Parameter> parameters;
-	private boolean isConstructor;
+	private boolean _constructor;
 	
 	public UMLMethod(Method method) {
-		this.isConstructor = false;
+		this._constructor = false;
 		this.visibility = visibilityOf(method.getModifiers());
 		this.name = method.getName();
 		this.type = method.getReturnType();
@@ -35,10 +33,10 @@ public class UMLMethod extends UMLCharacteristic {
 	}
 	
 	public UMLMethod(Constructor<?> constructor) {
-		this.isConstructor = true;
+		this._constructor = true;
 		this.visibility = visibilityOf(constructor.getModifiers());
 		this.name = constructor.getName();
-		type = null; // A constructor has no return type
+		this.type = null; // A constructor has no return type
 		parameters = new Vector<>();
 		for(Parameter parameter : constructor.getParameters()) {
 			parameters.add(parameter);
@@ -49,26 +47,23 @@ public class UMLMethod extends UMLCharacteristic {
 		this.parameters = parameters;
 	}
 	public boolean isConstructor() {
-		return isConstructor;
-	}
-	public void setConstructor(boolean isConstructor) {
-		this.isConstructor = isConstructor;
+		return _constructor;
 	}
 	/**
 	 * Returns grammar for UML Class diagram
 	 * */
 	@Override
 	public String toString() {
-		String temp = visibility.getSymbol() + " " + PathResolver.getShortFormOfType(name) +"(";
+		String temp = visibility.getSymbol() + " " + name +"(";
 		for(int i=0; i<parameters.size(); i++) {
 			temp = temp + parameters.get(i).getName() + ": ";
-			temp = temp + PathResolver.getShortFormOfType(parameters.get(i).getType().toString());
+			temp = temp + parameters.get(i).getType().getSimpleName();
 			if(i!=parameters.size()-1)
 				temp = temp + ", ";
 		}
 		temp = temp + ")";
-		if( !this.isConstructor ) // Then add the return type
-			temp = temp + " : " + PathResolver.getShortFormOfType(type.toString());
+		if( ! this.isConstructor() ) // Then add the return type
+			temp = temp + " : " + type.getSimpleName();
 		return temp;
 	}
 }

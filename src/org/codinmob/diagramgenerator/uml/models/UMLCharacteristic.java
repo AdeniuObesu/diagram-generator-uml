@@ -15,9 +15,14 @@ public abstract class UMLCharacteristic {
 	protected Visibility visibility;
 	protected String name;
 	protected Class<?> type;
+	protected boolean _static;
 	
 	public Visibility getVisibility() {
 		return visibility;
+	}
+	
+	public boolean isStatic() {
+		return _static;
 	}
 	
 	public String getName() {
@@ -25,7 +30,14 @@ public abstract class UMLCharacteristic {
 	}
 	
 	public Class<?> getType(){
-		return type;
+		return (type != null ? type : null);
+	}
+	
+	// derived attribute : calculated using type
+	public String getSimpleType() {
+		if(type!=null)
+			return type.getSimpleName();
+		return null;
 	}
 	
 	protected Visibility visibilityOf(int modifier) {

@@ -35,6 +35,10 @@ public class Project {
 		return "";
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	public String getPath() {
 		return path;
 	}
@@ -46,9 +50,10 @@ public class Project {
 		logger.info("The project instance is created !");
 	}
 	
-	public void setPackages(List<UMLPackage> packages) {
-		this.packages = packages;
+	public List<UMLPackage> getPackages(){
+		return packages;
 	}
+	
 	public void addPackage(UMLPackage anotherPackage) {
 		if(anotherPackage !=null )
 			this.packages.add(anotherPackage);

@@ -34,13 +34,4 @@ public class PathResolver {
 	private static final String retrieveProjectPathFrom(String str) {
 		return str.replace(Project.getAbsolutePath()+File.separator, "");
 	}
-	// TODO : this is not PathResolver's responsibility
-	public static final String getShortFormOfType(String type) {
-		String str = type;
-		type = type.substring(str.lastIndexOf(".")+1, str.length());
-		type = type.replace(";", "");
-		type = type.replace("class", "");
-		type = type.replace("interface", "");
-		return type.trim();
-	}
 }

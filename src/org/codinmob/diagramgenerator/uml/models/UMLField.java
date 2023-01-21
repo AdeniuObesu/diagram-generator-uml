@@ -4,8 +4,7 @@
 package org.codinmob.diagramgenerator.uml.models;
 
 import java.lang.reflect.Field;
-
-import org.codinmob.diagramgenerator.uml.utils.PathResolver;
+import java.lang.reflect.Modifier;
 
 /**
  * @author MOUKHAFI ANASS
@@ -17,6 +16,9 @@ public class UMLField extends UMLCharacteristic {
 		this.visibility = visibilityOf(field.getModifiers());
 		this.name = field.getName();
 		this.type = field.getType();
+		if(Modifier.toString(field.getModifiers()).contains("static")) {
+			this._static = true;
+		}
 	}
 	
 	/**
@@ -24,6 +26,6 @@ public class UMLField extends UMLCharacteristic {
 	 * */
 	@Override
 	public String toString() {
-		return visibility.getSymbol() + " " + name + " : " + PathResolver.getShortFormOfType(type.toString());
+		return visibility.getSymbol() + " " + name + " : " + type.getSimpleName();
 	}
 }

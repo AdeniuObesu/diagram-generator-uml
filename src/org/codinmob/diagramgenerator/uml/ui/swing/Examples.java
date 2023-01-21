@@ -20,9 +20,8 @@ public class Examples extends JFrame {
 	private static final long serialVersionUID = 1l;
 	
 	public Examples() {
-		testJUMLMethod();
+		testJUMLField();
 		pack();
-		setResizable(false);
 		setLocationRelativeTo(null);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -6,29 +6,25 @@ package org.codinmob.diagramgenerator.uml.ui.swing;
 import java.awt.Color;
 import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import org.codinmob.diagramgenerator.uml.ui.swing.utils.BoxPanel;
 
 /**
  * @author MOUKHAFI ANASS
  * @On Friday, January 13, 2023
  */
-public abstract class JUMLModel extends JPanel {
+public abstract class JUMLModel extends BoxPanel {
 	private static final long serialVersionUID = 1l;
 	
 	private JLabel stereotypeLabel;
 	protected JLabel nameLabel;
 	protected List<JUMLCharacteristic> characteristics;
-	
-	private BoxLayout boxLayout;
 	private Color backgroundColor;
 	
 	public JUMLModel() {
-		setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
-		setLayout(boxLayout);
+		super(BoxLayout.Y_AXIS);
 		if(this instanceof JUMLClass) {
 			backgroundColor = new Color(243, 243, 243);
 		} else if (this instanceof JUMLInterface) {

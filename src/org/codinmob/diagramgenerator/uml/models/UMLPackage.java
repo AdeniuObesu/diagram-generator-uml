@@ -17,14 +17,12 @@ public class UMLPackage {
 	
 	public UMLPackage(String absolutePath) {
 		this.absolutePath = absolutePath;
-		System.out.println(this.absolutePath + " is the absolute path");
-		System.out.println(getRelativePath() + " is the relative path");
 		this.models = new Vector<>();
 	}
 	public String getAbsolutePath() {
 		return absolutePath;
 	}
-	public String getRelativePath() {
+	public String getName() {
 		return (
 				"".equals(PathResolver.retrievePackageRelativePath(absolutePath))
 				? "(default-package)" : PathResolver.retrievePackageRelativePath(absolutePath)
@@ -39,7 +37,7 @@ public class UMLPackage {
 	
 	@Override
 	public String toString() {
-		StringBuffer temp = new StringBuffer("Package : " + getRelativePath());
+		StringBuffer temp = new StringBuffer("Package : " + getName());
 		for(UMLModel model : models) {
 			temp.append("\n------" + model);
 		}

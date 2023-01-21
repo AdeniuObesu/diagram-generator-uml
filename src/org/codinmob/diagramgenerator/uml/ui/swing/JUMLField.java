@@ -9,7 +9,6 @@ import javax.swing.Box;
 import javax.swing.JLabel;
 
 import org.codinmob.diagramgenerator.uml.models.UMLField;
-import org.codinmob.diagramgenerator.uml.utils.PathResolver;
 
 /**
  * @author MOUKHAFI ANASS
@@ -19,17 +18,14 @@ public class JUMLField extends JUMLCharacteristic {
 	private static final long serialVersionUID = 1L;
 
 	public JUMLField(UMLField field) {
-		super();
+		super(field);
 		
 		visibilityLabel = new JLabel( field.getVisibility().getSymbol());
 		add(visibilityLabel);
 		
 		add(Box.createRigidArea(new Dimension(5, 0)));
-		nameLabel = new JLabel(field.getName() + ":");
-		add(nameLabel);
+		signatureLabel.setText(field.getName() + " : " + field.getSimpleType());;
 		
-		add(Box.createRigidArea(new Dimension(5, 0)));
-		typeLabel = new JLabel(PathResolver.getShortFormOfType(field.getType().toString()));
-		add(typeLabel);
+		add(signatureLabel);
 	}
 }

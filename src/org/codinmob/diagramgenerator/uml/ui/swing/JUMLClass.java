@@ -3,11 +3,14 @@
  */
 package org.codinmob.diagramgenerator.uml.ui.swing;
 
+import javax.swing.JPanel;
+
 /**
  * @author MOUKHAFI ANASS
  * @On Sunday, January 22, 2023
  */
-public class JUMLClass implements Movable {
+public class JUMLClass extends JPanel implements Movable {
+	private static final long serialVersionUID = 1l;
 
 	@Override
 	public Object draw() {

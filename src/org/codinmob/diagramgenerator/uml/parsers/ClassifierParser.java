@@ -55,7 +55,7 @@ public class ClassifierParser implements Parser {
 				}
 			} else {// We process an enum so we have to store its associated constants
 				for(Object constant : clazz.getEnumConstants()) {
-					classifier.addCharacteristic(new UMLConstant(constant.toString()));
+					classifier.addCharacteristic(new UMLConstant(constant.toString().toUpperCase()));
 				}
 			}
 		}

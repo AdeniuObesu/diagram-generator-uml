@@ -13,9 +13,9 @@ import org.codinmob.diagramgenerator.uml.ui.swing.Drawable;
 public class DrawableObjectMapperImpl implements DrawableObjectMapper {
 
 	@Override
-	public Object drawableToUIComponent(Drawable drawable) {
-		Object obj = null;
-		// TODO : convert the drawable into AWT container...
-		return obj;
+	public Drawable objectToDrawable(Object obj) {
+		// TODO : convert the uml member object to a drawable...
+		return null;
 	}
+
 }

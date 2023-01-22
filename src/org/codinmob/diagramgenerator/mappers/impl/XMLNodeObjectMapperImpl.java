@@ -1,10 +1,11 @@
 /**
  * 
  */
-package org.codinmob.diagramgenerator.uml.parsers.dom;
+package org.codinmob.diagramgenerator.mappers.impl;
 
 import java.lang.reflect.Parameter;
 
+import org.codinmob.diagramgenerator.mappers.XMLNodeObjectMapper;
 import org.codinmob.diagramgenerator.uml.models.Project;
 import org.codinmob.diagramgenerator.uml.models.UMLCharacteristic;
 import org.codinmob.diagramgenerator.uml.models.UMLClass;
@@ -14,11 +15,12 @@ import org.codinmob.diagramgenerator.uml.models.UMLInterface;
 import org.codinmob.diagramgenerator.uml.models.UMLMethod;
 import org.codinmob.diagramgenerator.uml.models.UMLModel;
 import org.codinmob.diagramgenerator.uml.models.UMLPackage;
+import org.codinmob.diagramgenerator.uml.parsers.dom.XMLNode;
 /**
  * @author MOUKHAFI ANASS
  * @On Saturday, January 21, 2023
  */
-public class XMLNodeObjectMapper implements Mapper {
+public class XMLNodeObjectMapperImpl implements XMLNodeObjectMapper {
 
 	@Override
 	public XMLNode objectToXMLNode(Object obj) {
@@ -92,7 +94,6 @@ public class XMLNodeObjectMapper implements Mapper {
 		} else if(obj instanceof Parameter) {
 			Parameter actualObj = (Parameter) obj;
 			node = new XMLNode("parameter", 1);
-			node.setAttribute("name", actualObj.getName());
 			node.setAttribute("type", actualObj.getType().getTypeName());
 		}
 		// TODO : process relations

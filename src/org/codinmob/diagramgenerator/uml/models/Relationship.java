@@ -19,50 +19,6 @@ public class Relationship {
 	private String parentCardinality;
 	private String childCardinality;
 	
-	public Relationship() {
-		
-	}
-
-	public UMLModel getParent() {
-		return parent;
-	}
-
-	public void setParent(UMLModel parent) {
-		this.parent = parent;
-	}
-
-	public RelationType getRelationType() {
-		return relationType;
-	}
-
-	public void setRelationType(RelationType relationType) {
-		this.relationType = relationType;
-	}
-
-	public UMLModel getChild() {
-		return child;
-	}
-
-	public void setChild(UMLModel child) {
-		this.child = child;
-	}
-
-	public String getParentCardinality() {
-		return parentCardinality;
-	}
-
-	public void setParentCardinality(String parentCardinality) {
-		this.parentCardinality = parentCardinality;
-	}
-
-	public String getChildCardinality() {
-		return childCardinality;
-	}
-
-	public void setChildCardinality(String childCardinality) {
-		this.childCardinality = childCardinality;
-	}
-	
 	@Override
 	public String toString() {
 		if(parentCardinality != null && childCardinality != null){

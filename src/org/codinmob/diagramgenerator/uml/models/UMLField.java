@@ -10,7 +10,7 @@ import java.lang.reflect.Modifier;
  * @author MOUKHAFI ANASS
  * @On Friday, December 30, 2022
  */
-public class UMLField extends UMLCharacteristic {
+public class UMLField extends UMLProperty {
 	
 	public UMLField(Field field) {
 		this.visibility = visibilityOf(field.getModifiers());

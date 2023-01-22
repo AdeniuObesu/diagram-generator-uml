@@ -7,6 +7,8 @@ import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
 
+import org.codinmob.diagramgenerator.uml.models.Project;
+
 /**
  * @author MOUKHAFI ANASS
  * @On Thursday, January 05, 2023
@@ -16,13 +18,12 @@ public class CustomClassLoader {
 	
 	public static Class<?> loadClass(File file){
 		try {
-			System.out.println(file.getAbsolutePath());
 			if(loader == null) {
 				loader = URLClassLoader.newInstance(new URL[] {
-						new URL("file:///"+file.getAbsolutePath())
+						new URL("file:///"+Project.getAbsolutePath().replace('\\', '/')+"/")
 				});
 			}
-			// The argument here must be like the following "org.codinmob.diagramgenerator.RunUMLGenerator"
+			// The class name here must be a binary name
 			String className = PathResolver.retrieveClassFileRelativePath(file.getAbsolutePath());
 			return loader.loadClass(className);
 		} catch (Exception e) {

@@ -14,7 +14,7 @@ import java.util.Vector;
  * @author MOUKHAFI ANASS
  * @On Friday, December 30, 2022
  */
-public class UMLMethod extends UMLCharacteristic {
+public class UMLMethod extends UMLProperty {
 	private List<Parameter> parameters;
 	private boolean _constructor;
 	

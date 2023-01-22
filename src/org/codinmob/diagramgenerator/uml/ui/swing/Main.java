@@ -13,12 +13,17 @@ public class Main extends JFrame {
 	private static final long serialVersionUID = 1l;
 	
 	public Main() {
-		
+		display();
+	}
+	
+	private void display() {
+		setTitle("SWING UI");
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
+	
 	public static void main(String[] args) {
 		new Main();
 	}

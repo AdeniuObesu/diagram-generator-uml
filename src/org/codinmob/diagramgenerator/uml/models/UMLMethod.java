@@ -5,6 +5,7 @@ package org.codinmob.diagramgenerator.uml.models;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Vector;
@@ -25,6 +26,12 @@ public class UMLMethod extends UMLCharacteristic {
 		this.parameters = new Vector<>();
 		for(Parameter parameter : method.getParameters()) {
 			parameters.add(parameter);
+		}
+		if(Modifier.toString(method.getModifiers()).contains("static")) {
+			this._static = true;
+		}
+		if(Modifier.toString(method.getModifiers()).contains("final")) {
+			this._final = true;
 		}
 	}
 	

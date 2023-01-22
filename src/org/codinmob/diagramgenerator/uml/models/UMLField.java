@@ -19,6 +19,9 @@ public class UMLField extends UMLCharacteristic {
 		if(Modifier.toString(field.getModifiers()).contains("static")) {
 			this._static = true;
 		}
+		if(Modifier.toString(field.getModifiers()).contains("final")) {
+			this._final = true;
+		}
 	}
 	
 	/**

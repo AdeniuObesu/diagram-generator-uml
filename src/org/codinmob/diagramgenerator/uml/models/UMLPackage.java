@@ -22,6 +22,10 @@ public class UMLPackage {
 	public String getAbsolutePath() {
 		return absolutePath;
 	}
+	/*
+	 * Returns binary name or (default-package)
+	 * name : a calculated attribute 
+	 * */
 	public String getName() {
 		return (
 				"".equals(PathResolver.retrievePackageRelativePath(absolutePath))

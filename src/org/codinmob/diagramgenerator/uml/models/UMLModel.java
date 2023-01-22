@@ -15,11 +15,11 @@ import org.codinmob.diagramgenerator.uml.utils.PathResolver;
  * @On Sunday, January 01, 2023
  */
 public abstract class UMLModel {
-	protected String absolutePath;
+	protected String name;
 	protected List<UMLCharacteristic> characteristics;
 	
 	public UMLModel(File file) {
-		this.absolutePath = file.getAbsolutePath();
+		this.name = PathResolver.retrieveClassFileRelativePath(file.getAbsolutePath());
 		this.characteristics = new Vector<>();
 	}
 	
@@ -29,10 +29,9 @@ public abstract class UMLModel {
 	
 	/**
 	 * Returns the UMLModel's binary name
-	 * @return calculated name
 	 */
 	public String getName() {
-		return PathResolver.retrieveClassFileRelativePath(this.absolutePath);
+		return name;
 	}
 	
 	/**

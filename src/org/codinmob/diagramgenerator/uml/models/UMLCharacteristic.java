@@ -16,6 +16,7 @@ public abstract class UMLCharacteristic {
 	protected String name;
 	protected Class<?> type;
 	protected boolean _static;
+	protected boolean _final;
 	
 	public Visibility getVisibility() {
 		return visibility;
@@ -23,6 +24,10 @@ public abstract class UMLCharacteristic {
 	
 	public boolean isStatic() {
 		return _static;
+	}
+	
+	public boolean isFinal() {
+		return _final;
 	}
 	
 	public String getName() {

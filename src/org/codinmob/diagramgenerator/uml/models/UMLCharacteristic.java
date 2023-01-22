@@ -14,6 +14,10 @@ import org.codinmob.diagramgenerator.uml.enums.Visibility;
 public abstract class UMLCharacteristic {
 	protected String name;
 	
+	public UMLCharacteristic(String name) {
+		this.name = name;
+	}
+	
 	protected Visibility visibilityOf(int modifier) {
 		String str = Modifier.toString(modifier);
 		if(str.contains("public"))

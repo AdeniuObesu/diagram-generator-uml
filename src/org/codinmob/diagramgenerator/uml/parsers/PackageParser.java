@@ -21,7 +21,7 @@ public class PackageParser implements Parser {
 		if(FileUtils.isAValidPackage(packageFolder)) {
 			logger.info("Parsing package : " + packageFolder.getAbsolutePath());
 			UMLPackage thePackage = new UMLPackage(packageFolder.getAbsolutePath());
-			Parser parser = new ModelParser();
+			Parser parser = new ClassifierParser();
 			for(File file : packageFolder.listFiles()) {
 				if(FileUtils.isAValidClassFile(file)) {
 					UMLModel aModel = (UMLModel) parser.parse(file);

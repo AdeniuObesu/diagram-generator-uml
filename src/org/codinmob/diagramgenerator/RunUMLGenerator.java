@@ -7,7 +7,6 @@ import org.codinmob.diagramgenerator.uml.models.Project;
 import org.codinmob.diagramgenerator.uml.parsers.Parser;
 import org.codinmob.diagramgenerator.uml.parsers.ProjectParser;
 import org.codinmob.diagramgenerator.uml.parsers.dom.DOMParser;
-import org.codinmob.diagramgenerator.uml.ui.swing.Main;
 import org.codinmob.diagramgenerator.uml.utils.FileUtils;
 
 /**
@@ -44,7 +43,7 @@ public class RunUMLGenerator {
 	private void displaySwingUI(){
 		if(Project.getInstance(null) != null) {
 			logger.info("-> Started Swing UI display operation...");
-			Main.main(null);
+			//TODO : display swing UI
 			logger.info("-> Swing UI is displayed successfully !");
 		} else {
 			logger.info("Cannot dispaly swing UI (The project instance is not yet created !)");

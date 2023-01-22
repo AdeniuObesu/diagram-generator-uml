@@ -7,24 +7,22 @@ import javax.swing.JFrame;
 
 /**
  * @author MOUKHAFI ANASS
- * @On Thursday, January 12, 2023
+ * @On Sunday, January 22, 2023
  */
-public class Main extends JFrame {
+public class SwingUI extends JFrame {
 	private static final long serialVersionUID = 1l;
 	
-	public Main() {
+	public SwingUI() {
 		display();
 	}
-	
 	private void display() {
-		setTitle("SWING UI");
 		pack();
+		setSize(500, 400);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
-	
 	public static void main(String[] args) {
-		new Main();
+		new SwingUI();
 	}
 }

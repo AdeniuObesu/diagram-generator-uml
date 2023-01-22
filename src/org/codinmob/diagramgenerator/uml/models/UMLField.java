@@ -13,8 +13,8 @@ import java.lang.reflect.Modifier;
 public class UMLField extends UMLProperty {
 	
 	public UMLField(Field field) {
+		super(field.getName());
 		this.visibility = visibilityOf(field.getModifiers());
-		this.name = field.getName();
 		this.type = field.getType();
 		if(Modifier.toString(field.getModifiers()).contains("static")) {
 			this._static = true;

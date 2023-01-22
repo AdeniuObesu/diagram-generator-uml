@@ -20,6 +20,9 @@ public abstract class UMLProperty extends UMLCharacteristic {
 			return type.getSimpleName();
 		return null;
 	}
+	public UMLProperty(String name) {
+		super(name);
+	}
 	public Visibility getVisibility() {
 		return visibility;
 	}

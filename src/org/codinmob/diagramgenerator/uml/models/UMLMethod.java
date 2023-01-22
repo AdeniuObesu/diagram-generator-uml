@@ -19,9 +19,9 @@ public class UMLMethod extends UMLProperty {
 	private boolean _constructor;
 	
 	public UMLMethod(Method method) {
+		super(method.getName());
 		this._constructor = false;
 		this.visibility = visibilityOf(method.getModifiers());
-		this.name = method.getName();
 		this.type = method.getReturnType();
 		this.parameters = new Vector<>();
 		for(Parameter parameter : method.getParameters()) {
@@ -40,10 +40,11 @@ public class UMLMethod extends UMLProperty {
 	}
 	
 	public UMLMethod(Constructor<?> constructor) {
+		super((constructor.getName().contains(".") ?
+				constructor.getName().substring(constructor.getName().lastIndexOf(".")+1)
+				: constructor.getName()));
 		this._constructor = true;
 		this.visibility = visibilityOf(constructor.getModifiers());
-		String temp = constructor.getName();
-		this.name = (temp.contains(".") ? temp.substring(temp.lastIndexOf(".")+1) : temp);
 		this.type = null; // A constructor has no return type
 		parameters = new Vector<>();
 		for(Parameter parameter : constructor.getParameters()) {
@@ -62,15 +63,15 @@ public class UMLMethod extends UMLProperty {
 	 * */
 	@Override
 	public String toString() {
-		String temp = visibility.getSymbol() + " " + name +"(";
+		StringBuffer temp = new StringBuffer(visibility.getSymbol() + " " + name +"(");
 		for(int i=0; i<parameters.size(); i++) {
-			temp = temp + parameters.get(i).getType().getSimpleName();
+			temp.append(parameters.get(i).getType().getSimpleName());
 			if( i != parameters.size() - 1)
-				temp = temp + ", ";
+				temp.append(", ");
 		}
-		temp = temp + ")";
+		temp.append(")");
 		if( ! this.isConstructor() ) // Then add the return type
-			temp = temp + " : " + type.getSimpleName();
-		return temp;
+			temp.append(" : " + type.getSimpleName());
+		return temp.toString();
 	}
 }

@@ -13,11 +13,11 @@ import org.codinmob.diagramgenerator.uml.utils.PathResolver;
  */
 public class UMLPackage {
 	private String absolutePath;
-	private List<UMLModel> models;
+	private List<UMLClassifier> classifiers;
 	
 	public UMLPackage(String absolutePath) {
 		this.absolutePath = absolutePath;
-		this.models = new Vector<>();
+		this.classifiers = new Vector<>();
 	}
 	public String getAbsolutePath() {
 		return absolutePath;
@@ -33,20 +33,20 @@ public class UMLPackage {
 			);
 	}
 	
-	public void addModel(UMLModel anotherModel) {
-		if(anotherModel != null) {
-			models.add(anotherModel);
+	public void addClassifier(UMLClassifier anotherClassifier) {
+		if(anotherClassifier != null) {
+			classifiers.add(anotherClassifier);
 		}
 	}
 	
-	public List<UMLModel> getModels(){
-		return models;
+	public List<UMLClassifier> getClassifiers(){
+		return classifiers;
 	}
 	
 	@Override
 	public String toString() {
 		StringBuffer temp = new StringBuffer("Package : " + getName());
-		for(UMLModel model : models) {
+		for(UMLClassifier model : classifiers) {
 			temp.append("\n------" + model);
 		}
 		return temp.toString();

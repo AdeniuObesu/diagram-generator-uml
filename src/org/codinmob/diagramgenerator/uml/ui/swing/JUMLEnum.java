@@ -9,7 +9,7 @@ import javax.swing.JPanel;
  * @author MOUKHAFI ANASS
  * @On Sunday, January 22, 2023
  */
-public class JUMLEnum extends JPanel implements Movable{
+public class JUMLEnum extends JPanel implements Movable {
 	private static final long serialVersionUID = 1l;
 
 	@Override

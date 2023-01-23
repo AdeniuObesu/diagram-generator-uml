@@ -9,11 +9,11 @@ import org.codinmob.diagramgenerator.mappers.XMLNodeObjectMapper;
 import org.codinmob.diagramgenerator.uml.models.Project;
 import org.codinmob.diagramgenerator.uml.models.UMLCharacteristic;
 import org.codinmob.diagramgenerator.uml.models.UMLClass;
+import org.codinmob.diagramgenerator.uml.models.UMLClassifier;
 import org.codinmob.diagramgenerator.uml.models.UMLEnum;
 import org.codinmob.diagramgenerator.uml.models.UMLField;
 import org.codinmob.diagramgenerator.uml.models.UMLInterface;
 import org.codinmob.diagramgenerator.uml.models.UMLMethod;
-import org.codinmob.diagramgenerator.uml.models.UMLModel;
 import org.codinmob.diagramgenerator.uml.models.UMLPackage;
 import org.codinmob.diagramgenerator.uml.parsers.dom.XMLNode;
 /**
@@ -40,8 +40,8 @@ public class XMLNodeObjectMapperImpl implements XMLNodeObjectMapper {
 			node = new XMLNode("package", 1);
 			node.setAttribute("name", actualObj.getName());
 			XMLNode modelsNode = new XMLNode("models", 1);
-			for(UMLModel aModel : actualObj.getModels()) {
-				modelsNode.appendChild(objectToXMLNode(aModel));
+			for(UMLClassifier classifier : actualObj.getClassifiers()) {
+				modelsNode.appendChild(objectToXMLNode(classifier));
 			}
 			node.appendChild(modelsNode);
 		} else if(obj instanceof UMLClass) {

@@ -35,10 +35,6 @@ public abstract class UMLProperty extends UMLCharacteristic {
 		return _final;
 	}
 	
-	public String getName() {
-		return name;
-	}
-	
 	public Class<?> getType(){
 		return (type != null ? type : null);
 	}

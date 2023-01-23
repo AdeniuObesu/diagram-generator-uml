@@ -18,6 +18,10 @@ public abstract class UMLCharacteristic {
 		this.name = name;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	protected Visibility visibilityOf(int modifier) {
 		String str = Modifier.toString(modifier);
 		if(str.contains("public"))

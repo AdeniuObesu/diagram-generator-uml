@@ -11,7 +11,8 @@ import javax.swing.JLabel;
  */
 public class JUMLConstant extends JLabel implements Drawable {
 	private static final long serialVersionUID = 1l;
-
+	
+	
 	@Override
 	public Object draw() {
 		

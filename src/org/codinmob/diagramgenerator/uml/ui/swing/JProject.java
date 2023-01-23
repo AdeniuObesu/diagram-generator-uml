@@ -3,10 +3,11 @@
  */
 package org.codinmob.diagramgenerator.uml.ui.swing;
 
-import java.util.List;
-import java.util.Vector;
+import java.awt.Color;
 
 import javax.swing.JPanel;
+
+import org.codinmob.diagramgenerator.uml.ui.swing.utils.BorderPane;
 
 /**
  * @author MOUKHAFI ANASS
@@ -14,22 +15,23 @@ import javax.swing.JPanel;
  */
 public class JProject extends JPanel implements Drawable {
 	private static final long serialVersionUID = 1l;
-	private List<JUMLPackage> jPackages;
+	private BorderPane contentPane;
 	
 	public JProject() {
-		jPackages = new Vector<>();
+		contentPane = new BorderPane(Color.black, 5);
+		
 	}
 
 	public void addJUMLPackage(Drawable jPackage) {
 		if(jPackage != null) {
 			if(jPackage instanceof JUMLPackage) {
-				jPackages.add((JUMLPackage)jPackage);
+				contentPane.add((JUMLPackage)jPackage);
 			}
 		}
 	}
 	@Override
 	public Object draw() {
-		// TODO : Draw the JProject
-		return null;
+		add(contentPane);
+		return this;
 	}
 }

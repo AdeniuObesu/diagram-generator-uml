@@ -19,7 +19,6 @@ public class JProject extends JPanel implements Drawable {
 	
 	public JProject() {
 		contentPane = new BorderPane(Color.black, 5);
-		
 	}
 
 	public void addJUMLPackage(Drawable jPackage) {

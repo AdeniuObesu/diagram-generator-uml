@@ -28,7 +28,7 @@ public class JUMLPackage extends JPanel implements Movable {
 	}
 	public void addJUMLClassifier(Drawable jClassifier) {
 		if(jClassifier != null) {
-			if(contentPane != null) {
+			if(contentPane == null) {
 				contentPane = new BorderPane(Color.BLACK, 5);
 			}
 			if(jClassifier instanceof JUMLClass) {

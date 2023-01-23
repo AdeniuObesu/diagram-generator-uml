@@ -24,7 +24,7 @@ public class Project {
 	 * One instance only of Project will be created during execution !
 	 * */
 	public static Project getInstance(File folder) { // Lazy instantiation
-		if(project == null)
+		if(project == null && folder!=null )
 			project = new Project(folder);
 		return project;
 	}

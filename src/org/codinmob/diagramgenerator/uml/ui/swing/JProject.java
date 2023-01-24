@@ -3,22 +3,24 @@
  */
 package org.codinmob.diagramgenerator.uml.ui.swing;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
-
-import org.codinmob.diagramgenerator.uml.ui.swing.utils.BorderPane;
-
 /**
  * @author MOUKHAFI ANASS
  * @On Sunday, January 22, 2023
  */
 public class JProject extends JPanel implements Drawable {
 	private static final long serialVersionUID = 1l;
-	private BorderPane contentPane;
+	private JPanel contentPane;
 	
 	public JProject() {
-		contentPane = new BorderPane(Color.black, 5);
+		contentPane = new JPanel(null);
+		contentPane.setLayout(new BorderLayout());
+		
+		JUMLPackage umlPackage = new JUMLPackage("org.codinmob.diagramgenerator.uml.ui.swing");
+		umlPackage.setLocation(1, 1);
+		add(umlPackage);
 	}
 
 	public void addJUMLPackage(Drawable jPackage) {
@@ -28,6 +30,7 @@ public class JProject extends JPanel implements Drawable {
 			}
 		}
 	}
+	
 	@Override
 	public Object draw() {
 		add(contentPane);

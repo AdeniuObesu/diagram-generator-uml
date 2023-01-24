@@ -3,14 +3,10 @@
  */
 package org.codinmob.diagramgenerator.uml.ui.swing;
 
+import java.awt.BorderLayout;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import org.codinmob.diagramgenerator.mappers.DrawableObjectMapper;
-import org.codinmob.diagramgenerator.mappers.impl.DrawableObjectMapperImpl;
-import org.codinmob.diagramgenerator.uml.models.Project;
 
 /**
  * @author MOUKHAFI ANASS
@@ -21,22 +17,24 @@ public class SwingUI extends JFrame {
 	private static final Logger logger = Logger.getLogger(SwingUI.class.getName());
 	
 	public SwingUI() {
-		DrawableObjectMapper mapper = new DrawableObjectMapperImpl();
-		Drawable project = mapper.objectToDrawable(Project.getInstance(null));
-		add((JPanel)project.draw());
+//		DrawableObjectMapper mapper = new DrawableObjectMapperImpl();
+//		Drawable project = mapper.objectToDrawable(Project.getInstance(null));
+//		add((JPanel)project.draw());
+		setLayout(new BorderLayout());
+		add(new JUMLEnum("Vehicle"));
 		display();
 	}
 	private void display() {
 		pack();
-		setLocationRelativeTo(null);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	public static void main(String[] args) {
-		if(Project.getInstance(null) != null) {
+//		if(Project.getInstance(null) != null) {
 			new SwingUI();
-		} else {
+//		} else {
 			logger.info("Oups ! cannot generate Swing UI -> Project instance is not yet created !");
-		}
+//		}
 	}
 }

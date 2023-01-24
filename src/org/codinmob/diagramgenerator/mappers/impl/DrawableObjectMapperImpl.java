@@ -45,28 +45,28 @@ public class DrawableObjectMapperImpl implements DrawableObjectMapper {
 			drawable = jProject;
 		} else if(obj instanceof UMLPackage) {
 			UMLPackage actualObj = (UMLPackage) obj;
-			JUMLPackage jUMLPackage = new JUMLPackage();
+			JUMLPackage jUMLPackage = new JUMLPackage(actualObj.getName());
 			for(UMLClassifier classifier : actualObj.getClassifiers()) {
 				jUMLPackage.addJUMLClassifier(objectToDrawable(classifier));
 			}
 			drawable = jUMLPackage;
 		} else if(obj instanceof UMLClass) {
 			UMLClass actualObj = (UMLClass) obj;
-			JUMLClass jUMLClass = new JUMLClass();
+			JUMLClass jUMLClass = new JUMLClass(actualObj.getSimpleName());
 			for(UMLCharacteristic property : actualObj.getCharacteristics()) {
 				jUMLClass.addJUMLProperty(objectToDrawable(property));
 			}
 			drawable = jUMLClass;
 		} else if(obj instanceof UMLInterface) {
 			UMLInterface actualObj = (UMLInterface) obj;
-			JUMLInterface jUMLInterface = new JUMLInterface();
+			JUMLInterface jUMLInterface = new JUMLInterface(actualObj.getSimpleName());
 			for(UMLCharacteristic property : actualObj.getCharacteristics()) {
 				jUMLInterface.addJUMLProperty(objectToDrawable(property));
 			}
 			drawable = jUMLInterface;
 		} else if(obj instanceof UMLEnum) {
 			UMLEnum actualObj = (UMLEnum) obj;
-			JUMLEnum jUMLEnum = new JUMLEnum();
+			JUMLEnum jUMLEnum = new JUMLEnum(actualObj.getSimpleName());
 			for(UMLCharacteristic constant : actualObj.getCharacteristics()) {
 				jUMLEnum.addJUMLConstant(objectToDrawable(constant));
 			}

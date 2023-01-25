@@ -6,10 +6,7 @@ Une application permettant d’extraire l’ensemble des classes et packages d�
 - Les diagrammes de classes UML correspondants.
 
 Le diagramme de classe des modeles de donnees UML du projet :
-![Screenshot](resources/uml-models-class-diagram.png)
+![Screenshot](uml-models-class-diagram.png)
 
 Le diagramme des parseurs :
-![Screenshot](resources/parsers-class-diagram.png)
-
-Le diagramme des composants de l'interface utilisateur Swing :
-![Screenshot](resources/uml-ui-swing-components-class-diagram.png)
+![Screenshot](parsers-class-diagram.png)

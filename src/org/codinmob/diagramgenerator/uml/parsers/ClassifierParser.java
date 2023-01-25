@@ -16,11 +16,12 @@ import org.codinmob.diagramgenerator.uml.models.UMLEnum;
 import org.codinmob.diagramgenerator.uml.models.UMLField;
 import org.codinmob.diagramgenerator.uml.models.UMLInterface;
 import org.codinmob.diagramgenerator.uml.models.UMLMethod;
+import org.codinmob.diagramgenerator.uml.models.UMLModel;
 import org.codinmob.diagramgenerator.uml.utils.CustomClassLoader;
 import org.codinmob.diagramgenerator.uml.utils.PathResolver;
 
 /**
- * Parses a UMLModel (Class | Interface | Enum)
+ * Parses a UMLClassifier (Class | Interface | Enum)
  * @author MOUKHAFI ANASS
  * @On Saturday, December 31, 2022
  */
@@ -40,8 +41,12 @@ public class ClassifierParser implements Parser {
 				classifier = new UMLInterface(fileName);
 			} else {
 				classifier = new UMLClass(fileName);
+				for (Class<?> interfaceClass : clazz.getInterfaces()) {
+					((UMLClass) classifier).addImplementedInterface(interfaceClass.getName());
+				}
 			}
 			if(!clazz.isEnum()) {
+				((UMLModel)classifier).setMotherModelName(clazz.getSuperclass()==null ? "" : clazz.getSuperclass().getName());
 				for(Field field : clazz.getDeclaredFields()) {
 					classifier.addCharacteristic(new UMLField(field));
 				}

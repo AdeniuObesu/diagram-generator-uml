@@ -11,14 +11,13 @@ import org.codinmob.diagramgenerator.uml.enums.Visibility;
  */
 public abstract class UMLProperty extends UMLCharacteristic {
 	protected Visibility visibility;
-	protected Class<?> type;
+	protected String type;
 	protected boolean _static;
 	protected boolean _final;
 	// derived attribute : calculated using type
 	public String getSimpleType() {
-		if(type!=null)
-			return type.getSimpleName();
-		return null;
+		if (type == null) return null;
+		return type.substring(type.lastIndexOf(".") + 1);
 	}
 	public UMLProperty(String name) {
 		super(name);
@@ -35,7 +34,7 @@ public abstract class UMLProperty extends UMLCharacteristic {
 		return _final;
 	}
 	
-	public Class<?> getType(){
+	public String getType(){
 		return (type != null ? type : null);
 	}
 }

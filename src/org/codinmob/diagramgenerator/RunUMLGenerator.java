@@ -35,9 +35,9 @@ public class RunUMLGenerator {
 	 * */
 	private void startProcess(File file) {
 		logger.info("-> Start Processing");
-//		parseProject(file);
+		parseProject(file);
 //		generateXMLDocument();
-		displaySwingUI();
+//		displaySwingUI();
 		logger.info("-> End Processing");
 	}
 	

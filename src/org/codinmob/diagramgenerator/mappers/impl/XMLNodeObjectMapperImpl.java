@@ -68,7 +68,7 @@ public class XMLNodeObjectMapperImpl implements XMLNodeObjectMapper {
 			node.setAttribute("visibility", actualObj.getVisibility().toString().toLowerCase());
 			node.setAttribute("static", String.valueOf(actualObj.isStatic()));
 			node.setAttribute("final", String.valueOf(actualObj.isFinal()));
-			node.setAttribute("declaration-type", actualObj.getType().getTypeName());
+			node.setAttribute("declaration-type", actualObj.getType());
 			node.setAttribute("name", actualObj.getName());
 		} else if(obj instanceof UMLMethod) {
 			UMLMethod actualObj = (UMLMethod) obj;
@@ -81,14 +81,14 @@ public class XMLNodeObjectMapperImpl implements XMLNodeObjectMapper {
 			if(!actualObj.isConstructor()) {
 				node.setAttribute("static", String.valueOf(actualObj.isStatic()));
 				node.setAttribute("final", String.valueOf(actualObj.isFinal()));
-				node.setAttribute("return-type", actualObj.getType().getTypeName());
+				node.setAttribute("return-type", actualObj.getType());
 			}
 			node.setAttribute("name", actualObj.getName());
 			if(actualObj.getParameters().size() > 0) {
 				XMLNode paramsNode = new XMLNode("parameters", 1);
-				for(Parameter param : actualObj.getParameters()) {
-					paramsNode.appendChild(objectToXMLNode(param));
-				}
+//				for(Parameter param : actualObj.getParameters()) {
+//					paramsNode.appendChild(objectToXMLNode(param));
+//				} TODO : add params
 				node.appendChild(paramsNode);
 			}
 		} else if(obj instanceof Parameter) {

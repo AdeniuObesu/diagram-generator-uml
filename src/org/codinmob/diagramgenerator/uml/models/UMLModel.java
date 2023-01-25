@@ -6,15 +6,26 @@ import java.util.List;
 import java.util.Vector;
 
 /**
- * Represents future types, inherited by UMLClass and UMLInterface
+ * inherited by UMLClass and UMLInterface
  * @author MOUKHAFI ANASS
  * @On Sunday, January 01, 2023
  */
 public abstract class UMLModel extends UMLClassifier{
 	
+	private String motherModelName;
+	
+	public String getMotherModelName() {
+		return motherModelName;
+	}
+	
+	public void setMotherModelName(String name) {
+		this.motherModelName = name;
+	}
+	
 	public UMLModel(String name) {
 		super(name);
 		this.characteristics = new Vector<>();
+		motherModelName = "";
 	}
 	
 	public List<UMLCharacteristic> getCharacteristics(){

@@ -7,7 +7,7 @@ import java.lang.reflect.Modifier;
 
 import org.codinmob.diagramgenerator.uml.enums.Visibility;
 
-/** Inherited by UMLField and UMLMethod
+/** Represents future types, Inherited by UMLModel and UMLEnum
  * @author MOUKHAFI ANASS
  * @On Friday, January 06, 2023
  */

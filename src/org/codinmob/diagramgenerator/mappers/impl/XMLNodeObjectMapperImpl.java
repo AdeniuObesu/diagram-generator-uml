@@ -15,6 +15,7 @@ import org.codinmob.diagramgenerator.uml.models.UMLField;
 import org.codinmob.diagramgenerator.uml.models.UMLInterface;
 import org.codinmob.diagramgenerator.uml.models.UMLMethod;
 import org.codinmob.diagramgenerator.uml.models.UMLPackage;
+import org.codinmob.diagramgenerator.uml.models.UMLParameter;
 import org.codinmob.diagramgenerator.uml.parsers.dom.XMLNode;
 /**
  * @author MOUKHAFI ANASS
@@ -86,15 +87,15 @@ public class XMLNodeObjectMapperImpl implements XMLNodeObjectMapper {
 			node.setAttribute("name", actualObj.getName());
 			if(actualObj.getParameters().size() > 0) {
 				XMLNode paramsNode = new XMLNode("parameters", 1);
-//				for(Parameter param : actualObj.getParameters()) {
-//					paramsNode.appendChild(objectToXMLNode(param));
-//				} TODO : add params
+				for(UMLParameter param : actualObj.getParameters()) {
+					paramsNode.appendChild(objectToXMLNode(param));
+				}
 				node.appendChild(paramsNode);
 			}
-		} else if(obj instanceof Parameter) {
-			Parameter actualObj = (Parameter) obj;
+		} else if(obj instanceof UMLParameter) {
+			UMLParameter actualObj = (UMLParameter) obj;
 			node = new XMLNode("parameter", 1);
-			node.setAttribute("type", actualObj.getType().getTypeName());
+			node.setAttribute("type", actualObj.getSimpleType());
 		}
 		// TODO : process relations
 		return node;

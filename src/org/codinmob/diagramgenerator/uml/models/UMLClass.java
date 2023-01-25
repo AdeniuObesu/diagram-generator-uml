@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Vector;
 
 /**
- * UMLClass represents future classes, it is a UMLModel
+ * UMLClass represents concrete classes, it is a UMLModel
  * @author MOUKHAFI ANASS
  * @On Friday, December 30, 2022
  */

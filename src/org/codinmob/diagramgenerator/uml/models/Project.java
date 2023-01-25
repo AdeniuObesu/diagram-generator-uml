@@ -55,9 +55,12 @@ public class Project {
 		relations = new Vector<>();
 		logger.info("The project instance is created !");
 	}
-	
+
 	public List<UMLPackage> getPackages(){
 		return packages;
+	}
+	public List<UMLRelation> getRelations(){
+		return relations;
 	}
 	
 	public List<UMLModel> getModels() {

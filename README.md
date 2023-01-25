@@ -5,6 +5,9 @@ Une application permettant d’extraire l’ensemble des classes et packages d�
 - Un diagramme de packages et donc l’architecture globale du projet
 - Les diagrammes de classes UML correspondants.
 
+Un exemple basique du resultat de l'execution :
+![Screenshot](basic-swing-ui-example.png)
+
 Le diagramme de classe des modeles de donnees UML du projet :
 ![Screenshot](uml-models-class-diagram.png)
 

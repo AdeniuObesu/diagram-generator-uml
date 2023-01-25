@@ -4,6 +4,7 @@
 package org.codinmob.diagramgenerator.uml.models;
 
 import java.util.List;
+import java.util.Vector;
 
 /**
  * @author MOUKHAFI ANASS
@@ -19,13 +20,22 @@ public abstract class UMLClassifier {
 		return name.substring(name.lastIndexOf('.')+1);
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	public void addCharacteristic(UMLCharacteristic field) {
 		if(field!=null)
 			this.characteristics.add(field);
 	}
 	
+	public List<UMLCharacteristic> getUmlCharacteristics(){
+		return characteristics;
+	}
+	
 	public UMLClassifier(String name) {
 		this.name = name;
+		characteristics = new Vector<>();
 	}
 	
 	@Override

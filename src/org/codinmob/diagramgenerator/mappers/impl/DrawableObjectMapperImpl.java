@@ -4,17 +4,16 @@
 package org.codinmob.diagramgenerator.mappers.impl;
 
 import org.codinmob.diagramgenerator.mappers.DrawableObjectMapper;
-import org.codinmob.diagramgenerator.uml.ui.swing.Drawable;
 
 /**
  * @author MOUKHAFI ANASS
  * @On Sunday, January 22, 2023
  */
 public class DrawableObjectMapperImpl implements DrawableObjectMapper {
-
-	@Override
-	public Drawable objectToDrawable(Object obj) {
-		Drawable drawable = null;
+//
+//	@Override
+//	public Drawable objectToDrawable(Object obj) {
+//		Drawable drawable = null;
 //		if(obj instanceof Project) {
 //			Project actualObj = (Project) obj;
 //			JProject jProject = new JProject();
@@ -82,7 +81,5 @@ public class DrawableObjectMapperImpl implements DrawableObjectMapper {
 //			jUMLConstant.setText(actualObj.getName());
 //			drawable = jUMLConstant;
 //		}
-		return drawable;
-	}
-
+//		return drawable;
 }

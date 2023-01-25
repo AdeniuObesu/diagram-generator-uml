@@ -1,7 +1,5 @@
 package org.codinmob.diagramgenerator.uml.ui.swing;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.util.List;
 import java.util.Vector;
 

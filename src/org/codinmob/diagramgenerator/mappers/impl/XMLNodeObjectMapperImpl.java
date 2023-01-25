@@ -3,19 +3,19 @@
  */
 package org.codinmob.diagramgenerator.mappers.impl;
 
-import java.lang.reflect.Parameter;
-
 import org.codinmob.diagramgenerator.mappers.XMLNodeObjectMapper;
 import org.codinmob.diagramgenerator.uml.models.Project;
 import org.codinmob.diagramgenerator.uml.models.UMLCharacteristic;
 import org.codinmob.diagramgenerator.uml.models.UMLClass;
 import org.codinmob.diagramgenerator.uml.models.UMLClassifier;
+import org.codinmob.diagramgenerator.uml.models.UMLConstant;
 import org.codinmob.diagramgenerator.uml.models.UMLEnum;
 import org.codinmob.diagramgenerator.uml.models.UMLField;
 import org.codinmob.diagramgenerator.uml.models.UMLInterface;
 import org.codinmob.diagramgenerator.uml.models.UMLMethod;
 import org.codinmob.diagramgenerator.uml.models.UMLPackage;
 import org.codinmob.diagramgenerator.uml.models.UMLParameter;
+import org.codinmob.diagramgenerator.uml.models.UMLRelation;
 import org.codinmob.diagramgenerator.uml.parsers.dom.XMLNode;
 /**
  * @author MOUKHAFI ANASS
@@ -35,6 +35,11 @@ public class XMLNodeObjectMapperImpl implements XMLNodeObjectMapper {
 			node.appendChild(packagesNode);
 			for(UMLPackage aPackage : actualObj.getPackages()) {
 				packagesNode.appendChild(objectToXMLNode(aPackage));
+			}
+			XMLNode relationsNode = new XMLNode("relations", 1);
+			node.appendChild(relationsNode);
+			for(UMLRelation relation : actualObj.getRelations()) {
+				packagesNode.appendChild(objectToXMLNode(relation));
 			}
 		} else if(obj instanceof UMLPackage) {
 			UMLPackage actualObj = (UMLPackage) obj;
@@ -63,6 +68,9 @@ public class XMLNodeObjectMapperImpl implements XMLNodeObjectMapper {
 			UMLEnum actualObj = (UMLEnum) obj;
 			node = new XMLNode("enumeration", 1);
 			node.setAttribute("name", actualObj.getName());
+			for(UMLCharacteristic constant : actualObj.getCharacteristics()) {
+				// TODO : add a constant
+			}
 		} else if (obj instanceof UMLField) {
 			UMLField actualObj = (UMLField) obj;
 			node = new XMLNode("field", 1);
@@ -95,9 +103,14 @@ public class XMLNodeObjectMapperImpl implements XMLNodeObjectMapper {
 		} else if(obj instanceof UMLParameter) {
 			UMLParameter actualObj = (UMLParameter) obj;
 			node = new XMLNode("parameter", 1);
-			node.setAttribute("type", actualObj.getSimpleType());
+			node.setAttribute("type", actualObj.getType());
+		} else if(obj instanceof UMLRelation) {
+			UMLRelation actualObj = (UMLRelation) obj;
+			node = new XMLNode("relation", 1);
+			node.setAttribute("type", actualObj.getType().toString());
+			node.setAttribute("parent", actualObj.getParent().getName());
+			node.setAttribute("child", actualObj.getChild().getName());
 		}
-		// TODO : process relations
 		return node;
 	}
 }

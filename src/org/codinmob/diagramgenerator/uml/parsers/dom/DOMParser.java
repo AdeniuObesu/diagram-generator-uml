@@ -15,20 +15,21 @@ import org.codinmob.diagramgenerator.uml.parsers.Parser;
  * @On Saturday, January 21, 2023
  */
 public class DOMParser implements Parser{
+	private XMLNodeObjectMapper mapper;
 	private XMLNode root;
 	
 	public DOMParser() {
-		XMLNodeObjectMapper mapper = new XMLNodeObjectMapperImpl();
+		mapper = new XMLNodeObjectMapperImpl();
 		root = mapper.objectToXMLNode(Project.getInstance(null));
 	}
 	
-	public void generateXML() {
-		root.generate();
+	public void generateXML(String outFolderPath) {
+		root.generate(outFolderPath);
 	}
 	
 	@Override
 	public Object parse(File file) {
-		// TODO : (not necessary) Create a project instance from a valid document
+		// TODO : Create a project instance from a valid document
 		return null;
 	}
 	

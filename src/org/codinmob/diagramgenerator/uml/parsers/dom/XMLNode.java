@@ -6,6 +6,7 @@ package org.codinmob.diagramgenerator.uml.parsers.dom;
 import java.io.File;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -25,6 +26,7 @@ import org.w3c.dom.NodeList;
  */
 
 public class XMLNode {
+	private static final Logger logger = Logger.getLogger(XMLNode.class.getName());
 
 	private Node node;
 	private static Document document;
@@ -54,12 +56,16 @@ public class XMLNode {
 		}
 	}
 
-	public File generate() {
+	public File generate(String outFolderPath) {
 		try {
-			File file = new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath()
-					+ "\\projectModel.xml");
-			if (!file.exists()) {
-				file.createNewFile();
+			File file = new File(outFolderPath + "\\output.xml");
+			if (file.exists()) {
+				if(file.delete()) {
+					logger.info("The file does already exist and it is going to be replaced by another !");
+				}
+			}
+			if(file.createNewFile()) {
+				logger.info(file.getAbsolutePath() + " is created successfully !");
 			}
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");

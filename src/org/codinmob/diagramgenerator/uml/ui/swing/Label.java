@@ -24,7 +24,7 @@ public class Label extends JPanel {
 		add(label);
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("all")
 	public void setUnderline() {
 		Font font = label.getFont();
 		Map attributes = font.getAttributes();

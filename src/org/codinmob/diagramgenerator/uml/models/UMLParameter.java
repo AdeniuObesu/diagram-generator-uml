@@ -15,8 +15,7 @@ public class UMLParameter {
 	}
 	
 	public String getSimpleType() {
-		return type;
-		// return type.substring(type.lastIndexOf(".") + 1);
+		return type.substring(type.lastIndexOf(".") + 1);
 	}
 	
 	public String getType() {

@@ -5,6 +5,7 @@ package org.codinmob.diagramgenerator.uml.models;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Vector;
 
@@ -22,6 +23,9 @@ public class UMLMethod extends UMLProperty {
 		this.visibility = visibilityOf(method.getModifiers());
 		this.type = method.getGenericReturnType().getTypeName();
 		this.parameters = new Vector<>();
+		for(Parameter param : method.getParameters()) {
+			parameters.add(new UMLParameter(param.getType().getName()));
+		}
 	}
 	
 	public List<UMLParameter> getParameters(){
@@ -36,9 +40,9 @@ public class UMLMethod extends UMLProperty {
 		this.visibility = visibilityOf(constructor.getModifiers());
 		this.type = null; // A constructor has no return type
 		parameters = new Vector<>();
-//		for(UMLParameter parameter : constructor.getParameters()) {
-//			parameters.add(parameter);
-//		}
+		for(Parameter param : constructor.getParameters()) {
+			parameters.add(new UMLParameter(param.getType().getName()));
+		}
 	}
 	
 	public void setParameters(List<UMLParameter> parameters) {

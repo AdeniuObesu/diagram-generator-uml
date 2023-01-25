@@ -7,7 +7,6 @@ import java.io.File;
 import java.util.logging.Logger;
 
 import org.codinmob.diagramgenerator.uml.models.UMLClassifier;
-import org.codinmob.diagramgenerator.uml.models.UMLModel;
 import org.codinmob.diagramgenerator.uml.models.UMLPackage;
 import org.codinmob.diagramgenerator.uml.utils.FileUtils;
 /**
